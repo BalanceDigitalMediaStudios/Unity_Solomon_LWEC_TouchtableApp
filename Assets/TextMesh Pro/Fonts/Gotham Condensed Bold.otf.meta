@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: cc3132282056faa48859595bf0f49271
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Gotham Condensed
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 640c342fa1d347743a8d5d50de2b8a17, type: 3}
+  - {fileID: 12800000, guid: 57d9dea7c1bba1641bf61262ff29a71c, type: 3}
+  - {fileID: 12800000, guid: 4600f945140fba34b88a296fb34fb0ec, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
