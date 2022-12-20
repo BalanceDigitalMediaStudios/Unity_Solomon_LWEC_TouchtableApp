@@ -1,0 +1,916 @@
+fileFormatVersion: 2
+guid: 3e66cb0aa4450c14d90a50cc1b179a81
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sticker_blackBear
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 3546
+        width: 499
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5b0010c4f08ebe49b098ccbeef7dfdc
+      internalID: -1048977996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_spanishMoss
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 3546
+        width: 500
+        height: 499
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efa73ac80d561f34e873b61619447bb3
+      internalID: 1313760481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_snappingTurtle
+      rect:
+        serializedVersion: 2
+        x: 1450
+        y: 3550
+        width: 500
+        height: 491
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f0ae7252d6e1fc46bbe65536aaaaa74
+      internalID: 1115869518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_woodStork
+      rect:
+        serializedVersion: 2
+        x: 2211
+        y: 3546
+        width: 378
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37d870f5179f0364a82baf4dd1939447
+      internalID: 134451209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_whiteTailedDeer
+      rect:
+        serializedVersion: 2
+        x: 2878
+        y: 3546
+        width: 444
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 855843f5789ce8347aefede6396f0b83
+      internalID: -1180872873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_bobcat
+      rect:
+        serializedVersion: 2
+        x: 3554
+        y: 3546
+        width: 492
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fd9b5244445dd34fbf7bf75889c2840
+      internalID: -1183778498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_swampRabbit
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 2861
+        width: 501
+        height: 469
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b7a02b9a9187f842bc7432a226bf257
+      internalID: 781188236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_yellowCrownedNightHeron
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 2844
+        width: 498
+        height: 501
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f0c3a61238c31744be73ff92bba643a
+      internalID: 1601719376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_americanAlligator
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 2867
+        width: 500
+        height: 461
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4418ed0fc868eda429b3af57fab6ec05
+      internalID: -2105215699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_americanBullfrog
+      rect:
+        serializedVersion: 2
+        x: 2150
+        y: 2874
+        width: 500
+        height: 442
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b486bdc0b2a81aa47961baecbc9fb9ff
+      internalID: 130463724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_redSwampCrayfish
+      rect:
+        serializedVersion: 2
+        x: 2851
+        y: 2846
+        width: 498
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db7dc7d570f3b9146b758f1401588ea8
+      internalID: 1454366048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_whoopingCrane
+      rect:
+        serializedVersion: 2
+        x: 3550
+        y: 2847
+        width: 500
+        height: 498
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d762e54b9c810b149a63b6ab47d52ee4
+      internalID: -2134879791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_mottledDuck
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 2152
+        width: 500
+        height: 492
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d03535c8431564744bcb33cbf83d572e
+      internalID: 1777009382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_marshCordgrass
+      rect:
+        serializedVersion: 2
+        x: 749
+        y: 2144
+        width: 485
+        height: 501
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28fcfc472fd6ab54f9431e7d1241e774
+      internalID: 1463118666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_blueCrab
+      rect:
+        serializedVersion: 2
+        x: 1450
+        y: 2165
+        width: 500
+        height: 464
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ccdf5e7a01a6af488b5d4098e011ca7
+      internalID: -1506991664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_brownPelican
+      rect:
+        serializedVersion: 2
+        x: 2148
+        y: 2150
+        width: 500
+        height: 495
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec193585f3b16084db54d26c4bce733c
+      internalID: 93465436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_speckledTrout
+      rect:
+        serializedVersion: 2
+        x: 2850
+        y: 2159
+        width: 500
+        height: 474
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c64d46c0373a714e9c2de57d2ab891e
+      internalID: 1560627792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_brownShrimp
+      rect:
+        serializedVersion: 2
+        x: 3556
+        y: 2146
+        width: 487
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d72d01d1d7c82e43bb27ed7c6bfa1f6
+      internalID: -1942053169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_liveOak
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 1446
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a408d4109ec76904db3a550c9bf1bf21
+      internalID: 1412212051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_cajunChorusFrog
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 1510
+        width: 500
+        height: 372
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5ca8321dd734a64488298e022aedab7
+      internalID: -623711772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_deerStand
+      rect:
+        serializedVersion: 2
+        x: 1546
+        y: 1446
+        width: 308
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 042353b7dfb11564b934867aac1d88f9
+      internalID: -421922736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_baldCypress
+      rect:
+        serializedVersion: 2
+        x: 2152
+        y: 1447
+        width: 497
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d39a8b1f4807a04da793ac5594a349b
+      internalID: 876578102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_tupeloGum
+      rect:
+        serializedVersion: 2
+        x: 2847
+        y: 1449
+        width: 501
+        height: 494
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0360e5ebcceb5c241bd577ef7be0751f
+      internalID: 1870410798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_giantBlueIris
+      rect:
+        serializedVersion: 2
+        x: 3569
+        y: 1446
+        width: 462
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4a5589c52c38284992c10afd062da5e
+      internalID: 103997751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_canoe
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 882
+        width: 500
+        height: 227
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3c5eff39c4799c4e8c1aeb908730a55
+      internalID: -1169244660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_airboat
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 834
+        width: 500
+        height: 324
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fd9f499a68cae7449f2f87da2dfa6c5
+      internalID: -357987732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_waterLily
+      rect:
+        serializedVersion: 2
+        x: 1444
+        y: 753
+        width: 501
+        height: 486
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08488344dff78ac4e85317b78b67bf98
+      internalID: -509139117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_cattail
+      rect:
+        serializedVersion: 2
+        x: 2150
+        y: 744
+        width: 500
+        height: 493
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d03b5646d04184d468adda8ae65c5a60
+      internalID: 1987947076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_flatboat
+      rect:
+        serializedVersion: 2
+        x: 2850
+        y: 812
+        width: 500
+        height: 368
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b23f3d8f2816bf4408f9431c19df9414
+      internalID: -2037401948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_saltgrass
+      rect:
+        serializedVersion: 2
+        x: 3579
+        y: 739
+        width: 451
+        height: 499
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58ec8e1131a715f47899b9b9996fcd47
+      internalID: -359076144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_oysterReef
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 68
+        width: 500
+        height: 457
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3f651534b8012c49b74301206454709
+      internalID: -1122020309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_blackMangrove
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 46
+        width: 481
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6efb3d56ebc7f13458989780ac695cb5
+      internalID: 1086435099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_shrimpBoat
+      rect:
+        serializedVersion: 2
+        x: 1450
+        y: 118
+        width: 500
+        height: 356
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d90eb1489dc089f47ab92978e9ec0549
+      internalID: -290934843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_wilsonsPlover
+      rect:
+        serializedVersion: 2
+        x: 2150
+        y: 52
+        width: 500
+        height: 487
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd61b5111b0b5414198bbee151690ea2
+      internalID: -97589618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_americanOysterCatcher
+      rect:
+        serializedVersion: 2
+        x: 2849
+        y: 53
+        width: 501
+        height: 486
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40078f5efaca698479dc3167592dc200
+      internalID: 102312893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sticker_kempsRidleySeaTurtle
+      rect:
+        serializedVersion: 2
+        x: 3550
+        y: 53
+        width: 500
+        height: 486
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40fe9717d2aa9cc4cbf71f410f2afa77
+      internalID: -893622443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sticker_whoopingCrane: -2134879791
+      sticker_whiteTailedDeer: -1180872873
+      sticker_mottledDuck: 1777009382
+      sticker_saltgrass: -359076144
+      sticker_bobcat: -1183778498
+      sticker_canoe: -1169244660
+      sticker_americanOysterCatcher: 102312893
+      sticker_yellowCrownedNightHeron: 1601719376
+      sticker_wilsonsPlover: -97589618
+      sticker_spanishMoss: 1313760481
+      sticker_blueCrab: -1506991664
+      sticker_oysterReef: -1122020309
+      sticker_brownPelican: 93465436
+      sticker_americanBullfrog: 130463724
+      sticker_snappingTurtle: 1115869518
+      sticker_blackBear: -1048977996
+      sticker_cajunChorusFrog: -623711772
+      sticker_giantBlueIris: 103997751
+      sticker_brownShrimp: -1942053169
+      sticker_woodStork: 134451209
+      sticker_kempsRidleySeaTurtle: -893622443
+      sticker_flatboat: -2037401948
+      sticker_waterLily: -509139117
+      sticker_liveOak: 1412212051
+      spritesheet_stickers_29: -2028523213
+      sticker_redSwampCrayfish: 1454366048
+      sticker_speckledTrout: 1560627792
+      sticker_baldCypress: 876578102
+      sticker_marshCordgrass: 1463118666
+      sticker_tupeloGum: 1870410798
+      sticker_americanAlligator: -2105215699
+      sticker_blackMangrove: 1086435099
+      sticker_deerStand: -421922736
+      sticker_swampRabbit: 781188236
+      sticker_cattail: 1987947076
+      sticker_shrimpBoat: -290934843
+      sticker_airboat: -357987732
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
