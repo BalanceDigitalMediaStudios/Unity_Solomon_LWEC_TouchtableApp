@@ -1,0 +1,13 @@
+Font: Gotham  Style: Bold
+Point Size: 155   SP/PD Ratio: 16.1%
+
+Characters included: 197/198
+Missing characters: 1
+Excluded characters: 0
+
+Characters missing from font file:
+----------------------------------------
+ID: 8364	Hex: 20AC	Char [€]
+
+Characters excluded from packing:
+----------------------------------------

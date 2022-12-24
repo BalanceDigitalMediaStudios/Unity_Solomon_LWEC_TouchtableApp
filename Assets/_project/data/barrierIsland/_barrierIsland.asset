@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9608f3235df2dcd4f849e583b11c1379, type: 3}
+  m_Name: _barrierIsland
+  m_EditorClassIdentifier: 
+  _longName: Barrier Island
+  _sprite: {fileID: 21300000, guid: 07b590ac595b0c444b0011e135e94747, type: 3}
+  _stickers:
+  - name: White Tailed Deer
+    _sticker: {fileID: 11400000, guid: b2c48627f7fcaac46b8d4b70c49e8921, type: 2}
+    _unlockMethod: 0
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 0}
+  - name: Spanish Moss
+    _sticker: {fileID: 11400000, guid: 028dd322e6f53174a9e62a0789d212a1, type: 2}
+    _unlockMethod: 0
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 0}
+  - name: Cajun Chorus Frog
+    _sticker: {fileID: 11400000, guid: 84af5ec0a52ae3e48b06032473ae94cf, type: 2}
+    _unlockMethod: 0
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 0}
+  - name: Swamp Rabbit
+    _sticker: {fileID: 11400000, guid: 55f1856f642e5ff48862a44154486150, type: 2}
+    _unlockMethod: 2
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 11400000, guid: f3b1bb49ed0da96439b37766f07fd2b9, type: 2}
+  - name: Live Oak
+    _sticker: {fileID: 11400000, guid: 476da74aafdd2524b96912726a6daf32, type: 2}
+    _unlockMethod: 2
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 11400000, guid: 64fd8bd308a48ab4d90e4a6dbb4a3dcd, type: 2}
+  - name: Deer Stand
+    _sticker: {fileID: 11400000, guid: 02c8afc054c4b794c9569b48aadad30f, type: 2}
+    _unlockMethod: 1
+    _pollQuestion: {fileID: 11400000, guid: 1b35f21e24d4f034cb97c4bf53a685a1, type: 2}
+    _habitatMatch: {fileID: 0}
+  - name: Wood Stork
+    _sticker: {fileID: 11400000, guid: 551bc6bfe733d8648a39f85dc672b6d3, type: 2}
+    _unlockMethod: 1
+    _pollQuestion: {fileID: 11400000, guid: c92fa81214926c04aacc7a1a0ba2ac4d, type: 2}
+    _habitatMatch: {fileID: 0}

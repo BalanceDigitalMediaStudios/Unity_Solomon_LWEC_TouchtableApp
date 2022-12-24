@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a78a337984134c43830e2e3b9773515, type: 3}
+  m_Name: stickerData_oysterReef
+  m_EditorClassIdentifier: 
+  _longName: Oyster Reef
+  _sprite: {fileID: -1122020309, guid: 3e66cb0aa4450c14d90a50cc1b179a81, type: 3}

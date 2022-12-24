@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9608f3235df2dcd4f849e583b11c1379, type: 3}
+  m_Name: _cypressSwamp
+  m_EditorClassIdentifier: 
+  _longName: Cypress Swamp
+  _sprite: {fileID: 21300000, guid: 8cb4f46cffce83f4baedba5183d7f2da, type: 3}
+  _stickers:
+  - name: American Alligator
+    _sticker: {fileID: 11400000, guid: bbdb5ff6237049147bdd2d2d9020d289, type: 2}
+    _unlockMethod: 0
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 0}
+  - name: Canoe
+    _sticker: {fileID: 11400000, guid: 6827be4fc455126419cd4835e3dbce38, type: 2}
+    _unlockMethod: 0
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 0}
+  - name: Giant Blue Iris
+    _sticker: {fileID: 11400000, guid: 41531fe48563bbd4fad9d35a8e71f51a, type: 2}
+    _unlockMethod: 0
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 0}
+  - name: Bobcat
+    _sticker: {fileID: 11400000, guid: e9aafaa6c8bef3046923f267babf7467, type: 2}
+    _unlockMethod: 2
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 11400000, guid: ae78ed8acca09b245a1e3acbfdda6070, type: 2}
+  - name: Bald Cypress
+    _sticker: {fileID: 11400000, guid: 48ceb9ab895f2b24cbd7985d84cc4a7c, type: 2}
+    _unlockMethod: 2
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 11400000, guid: 61fb829b63a0e6342a86b0d8b55e4d4a, type: 2}
+  - name: Tupelo Gum
+    _sticker: {fileID: 11400000, guid: fcc9c949706222f408baf0666224af69, type: 2}
+    _unlockMethod: 1
+    _pollQuestion: {fileID: 11400000, guid: eaa86b728fa86084389537003df1a34a, type: 2}
+    _habitatMatch: {fileID: 0}
+  - name: Snapping Turtle
+    _sticker: {fileID: 11400000, guid: a5c6a66e64c8ec948b17a7eef4125448, type: 2}
+    _unlockMethod: 1
+    _pollQuestion: {fileID: 11400000, guid: a3ae93c6089e3604ebc3f523d31a82a1, type: 2}
+    _habitatMatch: {fileID: 0}
