@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9608f3235df2dcd4f849e583b11c1379, type: 3}
+  m_Name: _habitat_freshwaterMarsh
+  m_EditorClassIdentifier: 
+  _longName: Freshwater Marsh
+  _sprite: {fileID: 21300000, guid: b3c2f72c33f6ef148980019d593f2caf, type: 3}
+  _stickers:
+  - name: Flatboat
+    _sticker: {fileID: 11400000, guid: 9ad747464baf3934aa5c2a84f5c59f4f, type: 2}
+    _unlockMethod: 0
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 0}
+  - name: Red Swamp Crayfish
+    _sticker: {fileID: 11400000, guid: 9f4400324b1639c43a622ce26ec4cf34, type: 2}
+    _unlockMethod: 0
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 0}
+  - name: Cattail
+    _sticker: {fileID: 11400000, guid: cc634707f6d6ed5468478dc01fa2e5df, type: 2}
+    _unlockMethod: 0
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 0}
+  - name: Black Bear
+    _sticker: {fileID: 11400000, guid: 1f51b6b487203c644834a9a82a878fa4, type: 2}
+    _unlockMethod: 2
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 11400000, guid: 6608edffd9a993a4ea6ffe5a01e9c601, type: 2}
+  - name: Water Lily
+    _sticker: {fileID: 11400000, guid: 05997190d6e074647b834667bd22e5c3, type: 2}
+    _unlockMethod: 2
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 11400000, guid: c83230fbfc8398d41bd9ca038b4fc62b, type: 2}
+  - name: Airboat
+    _sticker: {fileID: 11400000, guid: 0293a0db51a52ef489b2e6d880b38fb5, type: 2}
+    _unlockMethod: 1
+    _pollQuestion: {fileID: 11400000, guid: 8c84397a0bd48004893508ce7d55cecb, type: 2}
+    _habitatMatch: {fileID: 0}
+  - name: American Bullfrog
+    _sticker: {fileID: 11400000, guid: c14a5cb63da60eb46a5d6e4ff1a90e44, type: 2}
+    _unlockMethod: 1
+    _pollQuestion: {fileID: 11400000, guid: afb3361f6b6b41f40a4dd66378aea378, type: 2}
+    _habitatMatch: {fileID: 0}

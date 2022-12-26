@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e03c83dfb54ae2445b62fe81c9cb6f1a, type: 3}
+  m_Name: poll_tupeloGum
+  m_EditorClassIdentifier: 
+  _question: "Swamps and fresh water wetlands are shrinking across Louisiana\u2019s
+    coast due to salt water intrusion. In your opinion, what is the most important
+    reason to protect these areas?"
+  _answers:
+  - Fresh water wetlands provide essential habitat for wildlife
+  - Fresh water wetlands are important to fisheries
+  - Fresh water wetlands absorb stormwater and protect communities from flooding
+  - All of the above

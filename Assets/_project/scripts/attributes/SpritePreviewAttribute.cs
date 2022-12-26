@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-//Draws a preview field for sprites
-
 #if UNITY_EDITOR
 using UnityEditor;
+
 [CustomPropertyDrawer(typeof(SpritePreviewAttribute))]
 public class SpritePreviewAttributeEditor: PropertyDrawer{
 
@@ -153,7 +152,6 @@ public class SpritePreviewAttributeEditor: PropertyDrawer{
             return maxSize * aspectRatio;
     }
 }
-
 #endif
 
 

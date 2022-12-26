@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9608f3235df2dcd4f849e583b11c1379, type: 3}
+  m_Name: _habitat_barrierIsland
+  m_EditorClassIdentifier: 
+  _longName: Barrier Island
+  _sprite: {fileID: 21300000, guid: 07b590ac595b0c444b0011e135e94747, type: 3}
+  _stickers:
+  - name: Marsh Cordgrass
+    _sticker: {fileID: 11400000, guid: 288599bb1940b9149a7ad61144c59e41, type: 2}
+    _unlockMethod: 0
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 0}
+  - name: Wilsons Plover
+    _sticker: {fileID: 11400000, guid: b3f5e7e531cdf4a45a442937a6632ac0, type: 2}
+    _unlockMethod: 0
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 0}
+  - name: Brown Pelican
+    _sticker: {fileID: 11400000, guid: e954a95f1fdef624e881f87726e6a2f3, type: 2}
+    _unlockMethod: 0
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 0}
+  - name: Brown Shrimp
+    _sticker: {fileID: 11400000, guid: ca2238203550903499c59d2395defe6d, type: 2}
+    _unlockMethod: 2
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 11400000, guid: 0cf0f3b5ccaa1544381486da23fa2f6d, type: 2}
+  - name: Kemps Ridley Sea Turtle
+    _sticker: {fileID: 11400000, guid: 50540123e8dd48046950fd38b5d8af91, type: 2}
+    _unlockMethod: 2
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 11400000, guid: b7aff7ceca85eca44aa825364a6a54b4, type: 2}
+  - name: Black Mangrove
+    _sticker: {fileID: 11400000, guid: 7252326d36f7c2d499a6c1de08047ae8, type: 2}
+    _unlockMethod: 1
+    _pollQuestion: {fileID: 11400000, guid: df5c202f0eeb8214d8dffb8c2610acd6, type: 2}
+    _habitatMatch: {fileID: 0}
+  - name: American Oyster Catcher
+    _sticker: {fileID: 11400000, guid: 7bb3cde2e916cd645adc371e64e06178, type: 2}
+    _unlockMethod: 1
+    _pollQuestion: {fileID: 11400000, guid: ef780e86997a0fd45888ae3fc00eed50, type: 2}
+    _habitatMatch: {fileID: 0}

@@ -651,7 +651,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sticker_waterLily
+      name: sticker_waterlily
       rect:
         serializedVersion: 2
         x: 1444
@@ -875,7 +875,7 @@ TextureImporter:
       sticker_whiteTailedDeer: -1180872873
       sticker_mottledDuck: 1777009382
       sticker_saltgrass: -359076144
-      sticker_bobcat: -1183778498
+      sticker_airboat: -357987732
       sticker_canoe: -1169244660
       sticker_americanOysterCatcher: 102312893
       sticker_yellowCrownedNightHeron: 1601719376
@@ -893,7 +893,6 @@ TextureImporter:
       sticker_woodStork: 134451209
       sticker_kempsRidleySeaTurtle: -893622443
       sticker_flatboat: -2037401948
-      sticker_waterLily: -509139117
       sticker_liveOak: 1412212051
       spritesheet_stickers_29: -2028523213
       sticker_redSwampCrayfish: 1454366048
@@ -907,7 +906,8 @@ TextureImporter:
       sticker_swampRabbit: 781188236
       sticker_cattail: 1987947076
       sticker_shrimpBoat: -290934843
-      sticker_airboat: -357987732
+      sticker_waterlily: -509139117
+      sticker_bobcat: -1183778498
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

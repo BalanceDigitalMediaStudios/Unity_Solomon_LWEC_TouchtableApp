@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e03c83dfb54ae2445b62fe81c9cb6f1a, type: 3}
+  m_Name: poll_deerStand
+  m_EditorClassIdentifier: 
+  _question: Wildlife tourism is a multi-billion-dollar industry in Louisiana that
+    supports nearly 4,400 businesses, over 80,000 jobs, and generates over $200 million
+    in tax-revenue. Which activity do you enjoy the most?
+  _answers:
+  - Recreational hunting
+  - Recreational fishing
+  - Wildlife watching tours & expeditions
+  - "I don\u2019t participate in wildlife tourism"

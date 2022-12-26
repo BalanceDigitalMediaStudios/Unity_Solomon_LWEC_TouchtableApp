@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "stickerData", menuName = "Data/Sticker Data")]
+[CreateAssetMenu(fileName = "sticker", menuName = "Data/Sticker Data")]
 public class StickerData : ScriptableObject{
 
     [SerializeField] string _longName;
