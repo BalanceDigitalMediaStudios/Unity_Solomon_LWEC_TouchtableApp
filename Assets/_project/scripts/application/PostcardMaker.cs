@@ -5,49 +5,85 @@ using UnityEngine.UI;
 
 public class PostcardMaker : MonoBehaviour{
 
-    //holds the rect that holds all created draggable stickers
-    [SerializeField] RectTransform _draggableContainer;
-    public RectTransform draggableContainer{get { return _draggableContainer; } }
+    [Space()]
+    [SerializeField, ReadOnly] HabitatData data;
 
-    //World space bound of the draggable stickers container
-    Bounds _draggableContainerBounds;
-    public Bounds draggableContainerBounds{
-        
-        get{
+    [Space()]
+    //area that draggable stickers can be moved
+    [SerializeField] RectTransform _draggableArea;
+    public RectTransform draggableArea{get { return _draggableArea; } }
 
-            if (_draggableContainerBounds.size == Vector3.zero)
-            {
-                //get world corners of container
-                Vector3[] corners = new Vector3[4];
-                draggableContainer.GetWorldCorners(corners);
-
-                //encapsulate corners into bounds to negate any rotation, scaling, etc due to zone placement
-                _draggableContainerBounds = new Bounds(corners[0], Vector3.zero);
-                for (int i = 1; i < 4; i++)
-                    _draggableContainerBounds.Encapsulate(corners[i]);
-            }
-            return _draggableContainerBounds;
-        }
-    }
+    //bounds of draggable area
+    Bounds _draggableBounds;
+    public Bounds draggableBounds{        
+        get{ if (_draggableBounds.size == Vector3.zero) _draggableBounds = RectTransformHelper.RectTransformToBounds(draggableArea); return _draggableBounds; } }
 
     //the image that stickers will be dragged onto
     [SerializeField] Image _habitatImage;
-    public Image habitatImage{get { return _habitatImage; } }
+    public Image            habitatImage{get { return _habitatImage; } }
+    public RectTransform    habitatRect{ get { return habitatImage.transform as RectTransform; } }
 
     [SerializeField] Animator _trashBinAnimator;
     public Animator         transBinAnimator{get { return _trashBinAnimator; } }
     public RectTransform    trashBinRect{ get { return transBinAnimator.transform as RectTransform; } }
 
+
     [Header("Sticker Area")]
     [SerializeField] Transform  unlockedGroup;
     [SerializeField] Transform  lockedGroup;
     [SerializeField] GameObject maxStickersMessage;
+    [SerializeField] int        maxStickers = 10;
+    [SerializeField, ReadOnly] int _stickerCount = 0;
+    int stickerCount{
+        get { return _stickerCount; }
+        set { 
+            _stickerCount = value;
+            maxStickersMessage.SetActive(stickerCount >= maxStickers);
+        }
+    }
 
-    [Header("Data")]
-    [SerializeField, ReadOnly] HabitatData data;
+    [Header("Snapshot Settings")]
+    [SerializeField] string                 filePrefix = "snapshots\\filePrefix";
+    [SerializeField] Camera                 snapshotCamera;
+    [SerializeField] RectTransform          snapshotRect;
+    [Tooltip("Desired width of the image.  NOTE: This is used BEFORE image rotation, so images that are sideways should enter desired height instead")]
+    [SerializeField] int                    snapshotWidth;
+    [Tooltip("After snapshot is taken, how should the image be rotated to orient correctly?")]
+    [SerializeField] SnapshotMaker.Rotation correctiveRotation = SnapshotMaker.Rotation.none;
+    [SerializeField, ReadOnly] Texture2D    outputTexture;
+
+
+    void Awake(){
+
+        Initialize(data);
+    }
+
+    public void Initialize(HabitatData data){
+
+        this.data = data;
+
+        //clear any sticker buttons and draggable stickers
+        stickerCount = 0;
+        DestroyAll<DraggableSticker>(transform);
+    }
+
+    void DestroyAll<T>(Transform parent) where T : MonoBehaviour{
+
+        T[] temp = parent.GetComponentsInChildren<T>(true);
+
+        foreach(T item in temp)
+            Destroy(item.gameObject);
+    }
+
+
+    public void OnAddSticker(){
+
+        stickerCount++;
+    }  
 
     public void OnRemoveSticker(){
 
+        stickerCount--;
         transBinAnimator.CrossFadeInFixedTime("pulse", .25f, -1, 0f);
-    }
+    }    
 }
