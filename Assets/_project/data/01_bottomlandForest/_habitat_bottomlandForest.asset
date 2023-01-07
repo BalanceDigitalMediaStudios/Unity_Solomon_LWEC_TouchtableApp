@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: _habitat_bottomlandForest
   m_EditorClassIdentifier: 
   _longName: Bottomland Forest
+  _buttonSprite: {fileID: -283567885, guid: b1aecfc030e96a9489ca5a1db50ce2f5, type: 3}
   _sprite: {fileID: 21300000, guid: b91af40b433c3ae4fa34124d1595e37d, type: 3}
   _stickers:
   - name: White Tailed Deer

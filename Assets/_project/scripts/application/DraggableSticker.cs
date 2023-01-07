@@ -54,19 +54,16 @@ public class DraggableSticker : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
         originalScale = transform.localScale;
         image.sprite = sprite;
-    }
-
-    void Start(){
-
         canvasGroup.blocksRaycasts = true;
-        postcardMaker.OnAddSticker();
     }
 
     public void OnPointerDown(PointerEventData eventData){
 
-        Debug.LogFormat("OnPointerDown: {0}", name);        
-        transform.localScale    = originalScale * draggingScaleMultiplier;
-        offset                  = transform.position - eventData.pointerCurrentRaycast.worldPosition;        
+        Debug.LogFormat("OnPointerDown: {0}", name);
+
+        offset = transform.position - eventData.pointerCurrentRaycast.worldPosition;
+
+        transform.localScale = originalScale * draggingScaleMultiplier;     
         transform.SetParent(postcardMaker.draggableArea.transform);        
         UpdateWorldSize();
     }
@@ -82,7 +79,6 @@ public class DraggableSticker : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             return;
         }
 
-
         transform.localScale = originalScale;
         transform.SetParent(postcardMaker.habitatImage.transform);
         UpdateWorldSize();
@@ -93,7 +89,7 @@ public class DraggableSticker : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
         Debug.LogFormat("OnBeginDrag: {0}", name);
         canvasGroup.blocksRaycasts = false;
-
+        
         dragStart = eventData.pointerCurrentRaycast.worldPosition;
         isDragging = true;
     }
@@ -106,21 +102,12 @@ public class DraggableSticker : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
         Vector3 delta       = eventData.pointerCurrentRaycast.worldPosition - dragStart;
         transform.position  = ClampStickerPosition(dragStart + delta + offset, .5f * worldSize);
-    }
-
-    Vector3 ClampStickerPosition(Vector3 position, Vector2 margin = new Vector2()){
-
-        //sticker can't go beyond the bounds of the container including margin
-        position.x = Mathf.Clamp(position.x, postcardMaker.draggableBounds.min.x + margin.x, postcardMaker.draggableBounds.max.x - margin.x);
-        position.y = Mathf.Clamp(position.y, postcardMaker.draggableBounds.min.y + margin.y, postcardMaker.draggableBounds.max.y - margin.y);
-
-        return position;
-    }
+    }   
 
     public void OnEndDrag(PointerEventData eventData){
         
         Debug.LogFormat("OnEndDrag {0}", name);
-        isDragging = false;
+        isDragging = false;        
 
         //remove sticker if not inside habitat image (within margins)
         if(ShouldRemoveSticker())
@@ -130,6 +117,17 @@ public class DraggableSticker : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         }
 
         canvasGroup.blocksRaycasts = true;
+    }
+
+    
+
+    Vector3 ClampStickerPosition(Vector3 position, Vector2 margin = new Vector2()){
+
+        //sticker can't go beyond the bounds of the container including margin
+        position.x = Mathf.Clamp(position.x, postcardMaker.draggableBounds.min.x + margin.x, postcardMaker.draggableBounds.max.x - margin.x);
+        position.y = Mathf.Clamp(position.y, postcardMaker.draggableBounds.min.y + margin.y, postcardMaker.draggableBounds.max.y - margin.y);
+
+        return position;
     }
 
     void UpdateWorldSize(){ 
@@ -190,6 +188,11 @@ public class DraggableSticker : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         }
 
         postcardMaker.OnRemoveSticker();
+        Destroy();
+    }
+
+    public void Destroy(){
+
         Destroy(gameObject);
     }
 }

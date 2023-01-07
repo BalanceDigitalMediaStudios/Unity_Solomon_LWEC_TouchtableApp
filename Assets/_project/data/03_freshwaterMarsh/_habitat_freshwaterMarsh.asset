@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: _habitat_freshwaterMarsh
   m_EditorClassIdentifier: 
   _longName: Freshwater Marsh
+  _buttonSprite: {fileID: -24432162, guid: b1aecfc030e96a9489ca5a1db50ce2f5, type: 3}
   _sprite: {fileID: 21300000, guid: b3c2f72c33f6ef148980019d593f2caf, type: 3}
   _stickers:
   - name: Flatboat
@@ -35,7 +36,7 @@ MonoBehaviour:
     _unlockMethod: 2
     _pollQuestion: {fileID: 0}
     _habitatMatch: {fileID: 11400000, guid: 6608edffd9a993a4ea6ffe5a01e9c601, type: 2}
-  - name: Water Lily
+  - name: White Waterlily
     _sticker: {fileID: 11400000, guid: 05997190d6e074647b834667bd22e5c3, type: 2}
     _unlockMethod: 2
     _pollQuestion: {fileID: 0}

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: _habitat_brackishMarsh
   m_EditorClassIdentifier: 
   _longName: Brackish Marsh
+  _buttonSprite: {fileID: -645222422, guid: b1aecfc030e96a9489ca5a1db50ce2f5, type: 3}
   _sprite: {fileID: 21300000, guid: 398e2d497d973634795292ba99765446, type: 3}
   _stickers:
   - name: Shrimp Boat

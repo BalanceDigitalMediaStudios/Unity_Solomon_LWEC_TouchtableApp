@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: _habitat_cypressSwamp
   m_EditorClassIdentifier: 
   _longName: Cypress Swamp
+  _buttonSprite: {fileID: -293014395, guid: b1aecfc030e96a9489ca5a1db50ce2f5, type: 3}
   _sprite: {fileID: 21300000, guid: 8cb4f46cffce83f4baedba5183d7f2da, type: 3}
   _stickers:
   - name: American Alligator

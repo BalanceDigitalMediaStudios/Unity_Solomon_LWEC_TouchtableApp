@@ -9,6 +9,9 @@ public class HabitatData : ScriptableObject{
     [SerializeField] string _longName;
     public string longName{get { return _longName; } }
 
+    [SerializeField, SpritePreview(200)] Sprite _buttonSprite;
+    public Sprite buttonSprite{get { return _buttonSprite; } }
+
     [SerializeField, SpritePreview(200)] Sprite _sprite;
     public Sprite sprite{get { return _sprite; } }
 

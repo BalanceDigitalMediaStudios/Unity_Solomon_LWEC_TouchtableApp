@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5200680158985804510}
   - component: {fileID: 5643204353230462206}
   - component: {fileID: 6007577016331367871}
+  - component: {fileID: 672613755853443051}
   m_Layer: 5
   m_Name: stickerSpawner
   m_TagString: Untagged
@@ -54,8 +55,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 5643204353230462206}
   prefab: {fileID: 5644618791975947988, guid: 009a47a7e4a4fc14790d2d06d4b541f9, type: 3}
-  data: {fileID: 0}
   instance: {fileID: 0}
+  data:
+    name: 
+    _sticker: {fileID: 0}
+    _unlockMethod: 0
+    _pollQuestion: {fileID: 0}
+    _habitatMatch: {fileID: 0}
 --- !u!222 &5200680158985804510
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -114,3 +120,18 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &672613755853443051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8176882067739933557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.2}
+  m_EffectDistance: {x: 3, y: -3}
+  m_UseGraphicAlpha: 1

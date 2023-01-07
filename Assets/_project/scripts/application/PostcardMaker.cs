@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PostcardMaker : MonoBehaviour{
+public class PostcardMaker : ZonedMonobehaviour{
 
-    [Space()]
+    public delegate void  InitializeEvent (string zoneId);
+    public static   event InitializeEvent onHasInitialized;
+
+
     [SerializeField, ReadOnly] HabitatData data;
-
     [Space()]
+
     //area that draggable stickers can be moved
     [SerializeField] RectTransform _draggableArea;
     public RectTransform draggableArea{get { return _draggableArea; } }
@@ -29,10 +32,16 @@ public class PostcardMaker : MonoBehaviour{
 
 
     [Header("Sticker Area")]
-    [SerializeField] Transform  unlockedGroup;
-    [SerializeField] Transform  lockedGroup;
-    [SerializeField] GameObject maxStickersMessage;
-    [SerializeField] int        maxStickers = 10;
+    [SerializeField] StickerSpawner spawnerPrefab;
+
+    [SerializeField] Transform      _unlockedGroup;
+    public Transform unlockedGroup{get { return _unlockedGroup; } }
+
+    [SerializeField] Transform      _lockedGroup;
+    public Transform lockedGroup{get { return _lockedGroup; } }
+
+    [SerializeField] GameObject     maxStickersMessage;
+    [SerializeField] int            maxStickers = 10;
     [SerializeField, ReadOnly] int _stickerCount = 0;
     int stickerCount{
         get { return _stickerCount; }
@@ -53,18 +62,33 @@ public class PostcardMaker : MonoBehaviour{
     [SerializeField, ReadOnly] Texture2D    outputTexture;
 
 
-    void Awake(){
-
-        Initialize(data);
-    }
 
     public void Initialize(HabitatData data){
 
+        StopAllCoroutines();
+        StartCoroutine(InitializeRoutine(data));
+    }
+    IEnumerator InitializeRoutine(HabitatData data){
+
         this.data = data;
 
-        //clear any sticker buttons and draggable stickers
-        stickerCount = 0;
+        //set image
+        habitatImage.sprite = data.sprite;
+
+        //remove any sticker spawners and draggables        
+        DestroyAll<StickerSpawner>(transform);
         DestroyAll<DraggableSticker>(transform);
+
+        //create new spawners based on data
+        if(data != null)
+            PopulateStickerSpawners();
+        
+        stickerCount = 0;
+
+        //wait a frame to allow Unity garbage collection before firing event
+        yield return new WaitForEndOfFrame();
+        if(onHasInitialized != null)
+            onHasInitialized(zoneId);
     }
 
     void DestroyAll<T>(Transform parent) where T : MonoBehaviour{
@@ -73,6 +97,17 @@ public class PostcardMaker : MonoBehaviour{
 
         foreach(T item in temp)
             Destroy(item.gameObject);
+    }
+
+
+
+    void PopulateStickerSpawners(){
+
+        for (int i = 0; i < data.stickers.Length; i++)
+        {
+            StickerSpawner newSpawner = Instantiate(spawnerPrefab, unlockedGroup);
+            newSpawner.Initialize(data.stickers[i]);            
+        }
     }
 
 
@@ -85,5 +120,5 @@ public class PostcardMaker : MonoBehaviour{
 
         stickerCount--;
         transBinAnimator.CrossFadeInFixedTime("pulse", .25f, -1, 0f);
-    }    
+    }
 }

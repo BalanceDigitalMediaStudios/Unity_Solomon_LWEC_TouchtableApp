@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: _habitat_barrierIsland
   m_EditorClassIdentifier: 
   _longName: Barrier Island
+  _buttonSprite: {fileID: -758199736, guid: b1aecfc030e96a9489ca5a1db50ce2f5, type: 3}
   _sprite: {fileID: 21300000, guid: 07b590ac595b0c444b0011e135e94747, type: 3}
   _stickers:
   - name: Marsh Cordgrass
