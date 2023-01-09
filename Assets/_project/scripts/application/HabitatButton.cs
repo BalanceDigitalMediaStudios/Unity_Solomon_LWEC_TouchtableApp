@@ -13,8 +13,9 @@ public class HabitatButton : ZonedMonobehaviour{
     [SerializeField] HabitatData _data;
     public HabitatData data{get { return _data; } }
     
-    Image _image;
-    public Image image{ get{ if(_image == null) _image = GetComponent<Image>(); return _image; } }
+    [SerializeField] Image _image;
+    Image image{ get{ return _image; } }
+
 
     Button _button;
     public Button button{ get{ if(_button == null) _button = GetComponent<Button>(); return _button; } }
@@ -33,7 +34,7 @@ public class HabitatButton : ZonedMonobehaviour{
     void OnValidate(){
 
         //automatically set button image according to habitat data
-        if(data != null && data.buttonSprite != null)
+        if(data != null && data.buttonSprite != null && image != null)
             image.sprite = data.buttonSprite;
     }
 }

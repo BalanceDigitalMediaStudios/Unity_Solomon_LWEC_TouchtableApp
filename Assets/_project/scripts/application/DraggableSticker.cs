@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class DraggableSticker : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBeginDragHandler, IDragHandler, IEndDragHandler{
 
     [SerializeField] Image              image;
-    [SerializeField] float              draggingScaleMultiplier = 1.2f;   
+    [SerializeField] float              draggingScaleMultiplier = 1.2f;
     [SerializeField, ReadOnly] Vector2  worldSize               = Vector2.zero;
 
     [Header("Removal")]
@@ -50,16 +50,18 @@ public class DraggableSticker : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     PostcardMaker postcardMaker { get { if (_postcardMaker == null) _postcardMaker = GetComponentInParent<PostcardMaker>(true); return _postcardMaker; } }
 
 
-    public void Initialize(Sprite sprite){
+    public void Initialize(Sprite sprite, string name){
 
-        originalScale = transform.localScale;
-        image.sprite = sprite;
+        this.name       = name;
+        originalScale   = transform.localScale;
+        image.sprite    = sprite;
+
         canvasGroup.blocksRaycasts = true;
     }
 
     public void OnPointerDown(PointerEventData eventData){
 
-        Debug.LogFormat("OnPointerDown: {0}", name);
+        //Debug.LogFormat("OnPointerDown: {0}", name);
 
         offset = transform.position - eventData.pointerCurrentRaycast.worldPosition;
 
@@ -70,7 +72,7 @@ public class DraggableSticker : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     public void OnPointerUp(PointerEventData eventData){
 
-        Debug.LogFormat("OnPointerUp: {0}", name);
+        //Debug.LogFormat("OnPointerUp: {0}", name);
 
         //remove sticker if not inside habitat image (within margins) and wasn't dragging
         if(!isDragging && ShouldRemoveSticker())
@@ -87,7 +89,7 @@ public class DraggableSticker : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     public void OnBeginDrag(PointerEventData eventData){
 
-        Debug.LogFormat("OnBeginDrag: {0}", name);
+        //Debug.LogFormat("OnBeginDrag: {0}", name);
         canvasGroup.blocksRaycasts = false;
         
         dragStart = eventData.pointerCurrentRaycast.worldPosition;
@@ -106,7 +108,7 @@ public class DraggableSticker : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     public void OnEndDrag(PointerEventData eventData){
         
-        Debug.LogFormat("OnEndDrag {0}", name);
+        //Debug.LogFormat("OnEndDrag {0}", name);
         isDragging = false;        
 
         //remove sticker if not inside habitat image (within margins)
@@ -147,8 +149,6 @@ public class DraggableSticker : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     }
 
     IEnumerator RemoveStickerRoutine(float durationMultiplier){
-
-        Debug.LogFormat("Removed Sticker: {0}", name);
     
         canvasGroup.blocksRaycasts = false;
         transform.SetParent(postcardMaker.draggableArea.transform);

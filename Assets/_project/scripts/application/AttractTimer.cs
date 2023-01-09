@@ -29,7 +29,7 @@ public class AttractTimer : ZonedMonobehaviour{
         }
     }
 
-    void TriggerAttract(){
+    public void TriggerAttract(){
 
         ResetTimer();
         if(onTriggerAttract != null)

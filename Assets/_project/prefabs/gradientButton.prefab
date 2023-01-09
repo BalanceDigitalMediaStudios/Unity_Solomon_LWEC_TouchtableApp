@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 576743563959434714}
   - component: {fileID: 4478605094781071472}
   - component: {fileID: 7144571079210604952}
+  - component: {fileID: 905991241784631387}
+  - component: {fileID: 7209496477547860823}
   m_Layer: 5
   m_Name: text_gradientButton
   m_TagString: Untagged
@@ -135,6 +137,43 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!225 &905991241784631387
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004711092600414334}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &7209496477547860823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004711092600414334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f90cf1c5556114f83726e60e2485a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canvasGroup: {fileID: 0}
+  unscaledTime: 0
+  loop: 1
+  loopDelay: 0
+  alphaStart: 0.75
+  alphaEnd: 1
+  delayTime: 0
+  delayTime_loop: 0
+  transitionTime: 0.25
+  transitionTime_loop: 0
+  onEnableAction: 0
+  disableCondition: 3
+  blockRaycastCondition: 2
 --- !u!1 &5826502071149712554
 GameObject:
   m_ObjectHideFlags: 0

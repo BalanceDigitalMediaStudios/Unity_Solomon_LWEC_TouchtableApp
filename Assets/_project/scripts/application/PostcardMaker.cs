@@ -11,24 +11,26 @@ public class PostcardMaker : ZonedMonobehaviour{
 
     [SerializeField, ReadOnly] HabitatData data;
     [Space()]
+    
 
-    //area that draggable stickers can be moved
-    [SerializeField] RectTransform _draggableArea;
+    [SerializeField] RectTransform _draggableArea;  //area that draggable stickers can be moved
     public RectTransform draggableArea{get { return _draggableArea; } }
+    
 
-    //bounds of draggable area
-    Bounds _draggableBounds;
+    Bounds _draggableBounds;  //bounds of draggable area
     public Bounds draggableBounds{        
         get{ if (_draggableBounds.size == Vector3.zero) _draggableBounds = RectTransformHelper.RectTransformToBounds(draggableArea); return _draggableBounds; } }
 
-    //the image that stickers will be dragged onto
-    [SerializeField] Image _habitatImage;
+    
+    [SerializeField] Image _habitatImage;  //the image that stickers will be dragged onto
     public Image            habitatImage{get { return _habitatImage; } }
     public RectTransform    habitatRect{ get { return habitatImage.transform as RectTransform; } }
+
 
     [SerializeField] Animator _trashBinAnimator;
     public Animator         transBinAnimator{get { return _trashBinAnimator; } }
     public RectTransform    trashBinRect{ get { return transBinAnimator.transform as RectTransform; } }
+
 
 
     [Header("Sticker Area")]
@@ -40,14 +42,18 @@ public class PostcardMaker : ZonedMonobehaviour{
     [SerializeField] Transform      _lockedGroup;
     public Transform lockedGroup{get { return _lockedGroup; } }
 
-    [SerializeField] GameObject     maxStickersMessage;
-    [SerializeField] int            maxStickers = 10;
-    [SerializeField, ReadOnly] int _stickerCount = 0;
+    [SerializeField] UITransitionFade   maxStickersMessageFade;
+    [SerializeField] int                maxStickers = 10;
+    [SerializeField, ReadOnly] int      _stickerCount = 0;
     int stickerCount{
         get { return _stickerCount; }
         set { 
             _stickerCount = value;
-            maxStickersMessage.SetActive(stickerCount >= maxStickers);
+
+            if(stickerCount >= maxStickers)
+                maxStickersMessageFade.gameObject.SetActive(true);
+            else if(maxStickersMessageFade.gameObject.activeInHierarchy)
+                maxStickersMessageFade.TransitionToStart(true);            
         }
     }
 
@@ -71,22 +77,22 @@ public class PostcardMaker : ZonedMonobehaviour{
     IEnumerator InitializeRoutine(HabitatData data){
 
         this.data = data;
-
-        //set image
         habitatImage.sprite = data.sprite;
 
-        //remove any sticker spawners and draggables        
+
+        //remove any sticker spawners and draggables
         DestroyAll<StickerSpawner>(transform);
         DestroyAll<DraggableSticker>(transform);
+        maxStickersMessageFade.gameObject.SetActive(false);
+        stickerCount = 0;
+        yield return new WaitForEndOfFrame();  //wait a frame to allow for Unity's garbage collection
+
 
         //create new spawners based on data
         if(data != null)
-            PopulateStickerSpawners();
-        
-        stickerCount = 0;
+            PopulateStickerSpawners();        
 
-        //wait a frame to allow Unity garbage collection before firing event
-        yield return new WaitForEndOfFrame();
+
         if(onHasInitialized != null)
             onHasInitialized(zoneId);
     }
@@ -94,7 +100,6 @@ public class PostcardMaker : ZonedMonobehaviour{
     void DestroyAll<T>(Transform parent) where T : MonoBehaviour{
 
         T[] temp = parent.GetComponentsInChildren<T>(true);
-
         foreach(T item in temp)
             Destroy(item.gameObject);
     }
@@ -105,8 +110,10 @@ public class PostcardMaker : ZonedMonobehaviour{
 
         for (int i = 0; i < data.stickers.Length; i++)
         {
-            StickerSpawner newSpawner = Instantiate(spawnerPrefab, unlockedGroup);
-            newSpawner.Initialize(data.stickers[i]);            
+            StickerSpawner  newSpawner  = Instantiate(spawnerPrefab, unlockedGroup);
+            string          newName     = string.Format("{0}_{1}", spawnerPrefab.name, data.stickers[i].sticker.longName);
+
+            newSpawner.Initialize(data.stickers[i], newName);
         }
     }
 

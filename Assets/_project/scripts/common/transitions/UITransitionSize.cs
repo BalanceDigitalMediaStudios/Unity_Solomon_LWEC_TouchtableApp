@@ -34,16 +34,19 @@ public class UITransitionSize : MonoBehaviour {
 		if (rectTransform == null)
 			rectTransform = transform as RectTransform;
 
+        Canvas.ForceUpdateCanvases();
 
-		switch (offsetUsed)
+        Vector2 currentSize = rectTransform.rect.size;
+
+        switch (offsetUsed)
 		{
 		case OffsetUse.absolute:
-			positionStart 	= (originalPositionIs == PositionUse.start 	? rectTransform.sizeDelta 					: secondPosition);
-			positionEnd 	= (originalPositionIs == PositionUse.start 	? secondPosition 							: rectTransform.sizeDelta);
+			positionStart 	= (originalPositionIs == PositionUse.start 	? currentSize 					: secondPosition);
+			positionEnd 	= (originalPositionIs == PositionUse.start 	? secondPosition 				: currentSize);
 			break;
 		case OffsetUse.relative:
-			positionStart 	= (originalPositionIs == PositionUse.start 	? rectTransform.sizeDelta 					: rectTransform.sizeDelta + secondPosition);
-			positionEnd 	= (originalPositionIs == PositionUse.start 	? rectTransform.sizeDelta + secondPosition 	: rectTransform.sizeDelta);
+			positionStart 	= (originalPositionIs == PositionUse.start 	? currentSize 					: currentSize + secondPosition);
+			positionEnd 	= (originalPositionIs == PositionUse.start 	? currentSize + secondPosition 	: currentSize);
 			break;
 		}
 	}

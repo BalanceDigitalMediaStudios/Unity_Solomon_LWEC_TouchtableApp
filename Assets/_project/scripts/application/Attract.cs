@@ -5,7 +5,8 @@ using UnityEngine;
 public class Attract : ZonedMonobehaviour{
 
     [Header("Settings")]
-    [SerializeField] float transitionDuration = 1;
+    [SerializeField] float openDuration     = 1;
+    [SerializeField] float closeDuration    = 1;
 
     [Header("Elements")]
     [SerializeField] CanvasGroup    attractCG;
@@ -32,7 +33,7 @@ public class Attract : ZonedMonobehaviour{
     void OnSelectHabitat(string zoneId, HabitatButton button){
 
         if(IsThisZone(zoneId))
-            OpenExperience(button, transitionDuration);
+            OpenExperience(button, openDuration);
     }
     public void OpenExperience(HabitatButton button, float duration = 0){
 
@@ -86,7 +87,7 @@ public class Attract : ZonedMonobehaviour{
     void OnTriggerAttract(string zoneId){
 
         if(IsThisZone(zoneId))
-            CloseExperience(transitionDuration);
+            CloseExperience(closeDuration);
     }
     public void CloseExperience(float duration = 0){
 
