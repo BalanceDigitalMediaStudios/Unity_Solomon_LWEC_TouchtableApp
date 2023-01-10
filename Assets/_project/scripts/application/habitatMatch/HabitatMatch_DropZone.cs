@@ -7,7 +7,7 @@ using TMPro;
 
 public class HabitatMatch_DropZone : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDropHandler{
 
-    public delegate void DropEvent (HabitatData data);
+    public delegate void DropEvent (HabitatData habitat);
     public event DropEvent onDrop;
 
     [SerializeField] TextMeshProUGUI    title;
@@ -31,6 +31,14 @@ public class HabitatMatch_DropZone : MonoBehaviour, IPointerEnterHandler, IPoint
         }
     }
 
+    void OnEnable(){
+
+        titleScaler.loop = false;
+        titleScaler.    TransitionToStart(true);
+        scaler.         TransitionToStart(true);
+        fader.          TransitionToStart(true);
+    }
+
 
     public void OnDrop(PointerEventData eventData){
 
@@ -44,9 +52,9 @@ public class HabitatMatch_DropZone : MonoBehaviour, IPointerEnterHandler, IPoint
         if (eventData.pointerDrag != null)
         {
             titleScaler.loop = true;
-            titleScaler. TransitionToEnd(true);
-            scaler.     TransitionToEnd(true);
-            fader.      TransitionToEnd(true);
+            titleScaler.    TransitionToEnd(true);
+            scaler.         TransitionToEnd(true);
+            fader.          TransitionToEnd(true);
         }
     }
 
@@ -55,9 +63,9 @@ public class HabitatMatch_DropZone : MonoBehaviour, IPointerEnterHandler, IPoint
         if (eventData.pointerDrag != null)
         {
             titleScaler.loop = false;
-            titleScaler. TransitionToStart(true);
-            scaler.     TransitionToStart(true);
-            fader.      TransitionToStart(true);
+            titleScaler.    TransitionToStart(true);
+            scaler.         TransitionToStart(true);
+            fader.          TransitionToStart(true);
         }
     }
 }

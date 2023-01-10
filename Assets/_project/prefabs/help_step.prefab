@@ -314,7 +314,7 @@ MonoBehaviour:
   playOnEnable: 1
   loop: 0
   preDelay: 0
-  charInterval: 0.025
+  charInterval: 0.01
   postDelay: 0
   characters: 0
   _index: 0

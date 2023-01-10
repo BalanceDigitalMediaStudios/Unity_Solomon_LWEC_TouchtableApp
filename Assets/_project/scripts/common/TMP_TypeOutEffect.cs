@@ -31,14 +31,13 @@ public class TMP_TypeOutEffect : MonoBehaviour{
     void OnEnable(){
 
         tmp.ForceMeshUpdate(true, true);
+        characters = tmp.textInfo.characterCount;
 
         if(playOnEnable)
             PlayEffect();
     }
 
     void PlayEffect(){
-
-        characters = tmp.textInfo.characterCount;
 
         StopAllCoroutines();
         StartCoroutine(PlayEffectRoutine());
@@ -47,6 +46,7 @@ public class TMP_TypeOutEffect : MonoBehaviour{
     IEnumerator PlayEffectRoutine(){
         
         tmp.maxVisibleCharacters = 0;
+        
         if(preDelay > 0)
             yield return new WaitForSeconds(postDelay);
         

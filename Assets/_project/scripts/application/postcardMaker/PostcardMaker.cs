@@ -10,27 +10,22 @@ public class PostcardMaker : ZonedMonobehaviour{
 
 
     [SerializeField, ReadOnly] HabitatData data;
-    [Space()]
-    
 
+    [Space()]
     [SerializeField] RectTransform _draggableArea;  //area that draggable stickers can be moved
-    public RectTransform draggableArea{get { return _draggableArea; } }
-    
+    public RectTransform draggableArea{get { return _draggableArea; } }    
 
     Bounds _draggableBounds;  //bounds of draggable area
     public Bounds draggableBounds{        
         get{ if (_draggableBounds.size == Vector3.zero) _draggableBounds = RectTransformHelper.RectTransformToBounds(draggableArea); return _draggableBounds; } }
-
     
     [SerializeField] Image _habitatImage;  //the image that stickers will be dragged onto
     public Image            habitatImage{get { return _habitatImage; } }
     public RectTransform    habitatRect{ get { return habitatImage.transform as RectTransform; } }
 
-
     [SerializeField] Animator _trashBinAnimator;
     public Animator         transBinAnimator{get { return _trashBinAnimator; } }
     public RectTransform    trashBinRect{ get { return transBinAnimator.transform as RectTransform; } }
-
 
 
     [Header("Sticker Area")]
@@ -56,6 +51,13 @@ public class PostcardMaker : ZonedMonobehaviour{
                 maxStickersMessageFade.TransitionToStart(true);            
         }
     }
+
+
+    [Header("Unlocking Games")]
+    [SerializeField] HabitatMatch _habitatMatch;
+    public HabitatMatch habitatMatch{get { return _habitatMatch; } }
+
+
 
     [Header("Snapshot Settings")]
     [SerializeField] string                 filePrefix = "snapshots\\filePrefix";

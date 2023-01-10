@@ -34,7 +34,14 @@ public class StickerSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     bool isDragging = false;
 
     PostcardMaker _postcardMaker;
-    PostcardMaker postcardMaker { get { if (_postcardMaker == null) _postcardMaker = GetComponentInParent<PostcardMaker>(true); return _postcardMaker; } }
+    public PostcardMaker postcardMaker { get { if (_postcardMaker == null) _postcardMaker = GetComponentInParent<PostcardMaker>(true); return _postcardMaker; } }
+
+
+
+    void Awake(){
+
+        unlockButton.onClick.AddListener(UnlockButton);
+    }
 
 
 
@@ -127,5 +134,12 @@ public class StickerSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
         stickerCG.alpha = .3f;
         unlockButton.gameObject.SetActive(true);
+    }
+
+
+    void UnlockButton(){
+
+        if(data.unlockMethod == StickerSettings.UnlockMethod.habitatMatch && data.habitatMatch != null)
+            postcardMaker.habitatMatch.Open(this);
     }
 }
