@@ -4,16 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class HabitatMatch : MonoBehaviour{
+public class HabitatMatch : UnlockActivity{
 
-    [SerializeField, ReadOnly] StickerSpawner   spawner;  //sticker to unlock
-    [SerializeField] UnlockScreen               unlockScreen;
-    [SerializeField] UITransitionFade           mainFade;
+    [Header("Instructions")]
+    [SerializeField] UITransitionFade   instructionsFade;
+    [SerializeField] Button             closeInstructionsButton;
 
-    [Header("Choices")]
-    [SerializeField] Button                     backButton;
-    [SerializeField] UITransitionFade           instructionsFade;
-    [SerializeField] Button                     closeInstructionsButton;
+    [Header("Activity")]
     [SerializeField] HabitatMatch_Draggable     sticker;
     [SerializeField] HabitatMatch_DropZone[]    dropZones;
     [SerializeField, ReadOnly] bool             madeChoice = false;
@@ -22,35 +19,29 @@ public class HabitatMatch : MonoBehaviour{
     [SerializeField] UITransitionFade   resultsFade;
     [SerializeField] TextMeshProUGUI    resultText;
     [SerializeField] TextMeshProUGUI    flavorText;
-    [SerializeField] Button             continueButton;
 
 
     Vector3 startScale;
     Vector3 startPos;
-    HabitatMatchData match;    
+    HabitatMatchData matchData;    
 
 
-    void Awake(){
+    protected override void Awake(){
+
+        base.Awake();
 
         startPos    = sticker.transform.position;
         startScale  = sticker.transform.localScale;
 
-        backButton.             onClick.AddListener(Close);
-        closeInstructionsButton.onClick.AddListener(CloseInstructionsButton);
-        continueButton.         onClick.AddListener(CloseAndUnlockSticker);        
+        closeInstructionsButton.onClick.AddListener(CloseInstructionsButton);      
     }
 
 
     void OnEnable(){
 
-        mainFade.blockRaycastCondition = UITransitionFade.BlockRaycastCondition.always;
-
         sticker.onEndDrag += OnEndDrag;
         for (int i = 0; i < dropZones.Length; i++)
             dropZones[i].onDrop += OnDrop;
-
-        ResetSticker();
-        madeChoice = false;
     }
     void OnDisable(){
 
@@ -62,30 +53,34 @@ public class HabitatMatch : MonoBehaviour{
 
 
 
-    public void Open(StickerSpawner spawner){
+    public override void Open(StickerSpawner spawner){
 
-        //open menu and help, disable results screen
-        gameObject.SetActive(true);
-        instructionsFade.blockRaycastCondition = UITransitionFade.BlockRaycastCondition.always;
+        base.Open(spawner);        
+
+        //enable instructions and disable results
         instructionsFade.gameObject.SetActive(true);
+        instructionsFade.blockRaycastCondition = UITransitionFade.BlockRaycastCondition.always;
+        instructionsFade.TransitionToEnd(true, instructionsFade.transitionTime, instructionsFade.delayTime);
         resultsFade.gameObject.SetActive(false);
 
 
-        this.spawner = spawner;
-        match = spawner.data.habitatMatch;
-        
+        //assign data        
+        matchData = spawner.data.habitatMatch;
         sticker.Initialize(spawner.data.sticker.sprite);
+        ResetSticker();
+        madeChoice = false;
+
 
         //randomize drop zones
         List<HabitatMatch_DropZone> dropZoneList = new List<HabitatMatch_DropZone>(dropZones);
-        for (int i = 0; i < dropZones.Length && i < match.choices.Length; i++)
+        for (int i = 0; i < dropZones.Length && i < matchData.choices.Length; i++)
         {
             int rand = Random.Range(0, dropZoneList.Count);
 
             HabitatMatch_DropZone temp = dropZoneList[rand];
             dropZoneList.RemoveAt(rand);
 
-            temp.Initialize(match.choices[i]);
+            temp.Initialize(matchData.choices[i]);
         }
     }
 
@@ -93,17 +88,6 @@ public class HabitatMatch : MonoBehaviour{
 
         instructionsFade.blockRaycastCondition = UITransitionFade.BlockRaycastCondition.never;
         instructionsFade.TransitionToStart(true, instructionsFade.transitionTime, 0f);
-    }
-
-    void CloseAndUnlockSticker(){
-
-        unlockScreen.OpenAndUnlock(spawner);
-        Close();        
-    }
-    void Close(){
-
-        mainFade.blockRaycastCondition = UITransitionFade.BlockRaycastCondition.never;
-        mainFade.TransitionToStart(true, mainFade.transitionTime, 0f);
     }
 
 
@@ -127,9 +111,9 @@ public class HabitatMatch : MonoBehaviour{
 
         madeChoice = true;
 
-        //set result data
-        resultText.text = match.choices[match.correctIndex].name == habitat.name ? "CORRECT!" : "ACTUALLY...";
-        flavorText.text = match.flavorText;
+        //set result text
+        resultText.text = matchData.correctHabitat.name == habitat.name ? "CORRECT!" : "ACTUALLY...";
+        flavorText.text = matchData.flavorText;
 
         //open results
         resultsFade.blockRaycastCondition = UITransitionFade.BlockRaycastCondition.always;

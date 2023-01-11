@@ -85,7 +85,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1514756590860265320}
+  - component: {fileID: 223174759918834933}
   - component: {fileID: 799531081997414067}
+  - component: {fileID: 5455034979528361739}
   m_Layer: 5
   m_Name: pollResult
   m_TagString: Untagged
@@ -118,6 +120,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &223174759918834933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2789374930000580623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9396e85010073284f8596d355f7cdbfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slide: {fileID: 5455034979528361739}
+  answerText: {fileID: 2379592258252030997}
+  percentText: {fileID: 1402544105572411385}
+  fillRect: {fileID: 3113160396557348048}
+  defaultDuration: 1
 --- !u!114 &799531081997414067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +157,31 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &5455034979528361739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2789374930000580623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aff0a1c0291de44b84b7261c95e843d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rectTransform: {fileID: 1514756590860265320}
+  unscaledTime: 0
+  loop: 0
+  delayTime: 0
+  delayTime_loop: 0
+  transitionTime: 0.67
+  transitionTime_loop: 0
+  interpolation: 2
+  actionOnEnable: 0
+  disableObjectAfter: 3
+  originalPositionIs: 1
+  offsetUsed: 1
+  secondPosition: {x: 0, y: -400, z: 0}
 --- !u!1 &2815827034624698844
 GameObject:
   m_ObjectHideFlags: 0

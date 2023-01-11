@@ -71,5 +71,5 @@ public class PollQuestionData : ScriptableObject{
 
     const int ANSWERS = 4;
     [SerializeField] string[] _answers = new string[ANSWERS];
-    public string[] answers{get { return _answers; } }    
+    public string[] answers{get { return _answers; } }
 }

@@ -79,7 +79,8 @@ public class HabitatMatchDataEditor : Editor{
 public class HabitatMatchData : ScriptableObject{
 
     [SerializeField] int _correctIndex = 0;
-    public int correctIndex{get { return _correctIndex; } }
+    public int          correctIndex{get { return _correctIndex; } }
+    public HabitatData  correctHabitat{get { return choices[correctIndex]; } }
 
     const int CHOICES = 3;
     [SerializeField] HabitatData[] _choices = new HabitatData[CHOICES];
