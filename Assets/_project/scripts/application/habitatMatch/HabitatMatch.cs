@@ -19,6 +19,7 @@ public class HabitatMatch : UnlockActivity{
     [SerializeField] UITransitionFade   resultsFade;
     [SerializeField] TextMeshProUGUI    resultText;
     [SerializeField] TextMeshProUGUI    flavorText;
+    [SerializeField] TMP_TypeOutEffect  flavorTextTyping;
 
 
     Vector3 startScale;
@@ -39,11 +40,15 @@ public class HabitatMatch : UnlockActivity{
 
     void OnEnable(){
 
+        flavorTextTyping.onFinish.AddListener(OnFlavorTextTyped);
+
         sticker.onEndDrag += OnEndDrag;
         for (int i = 0; i < dropZones.Length; i++)
             dropZones[i].onDrop += OnDrop;
     }
     void OnDisable(){
+
+        flavorTextTyping.onFinish.RemoveListener(OnFlavorTextTyped);
 
         sticker.onEndDrag -= OnEndDrag;
         for (int i = 0; i < dropZones.Length; i++)
@@ -55,7 +60,7 @@ public class HabitatMatch : UnlockActivity{
 
     public override void Open(StickerSpawner spawner){
 
-        base.Open(spawner);        
+        base.Open(spawner);
 
         //enable instructions and disable results
         instructionsFade.gameObject.SetActive(true);
@@ -115,8 +120,15 @@ public class HabitatMatch : UnlockActivity{
         resultText.text = matchData.correctHabitat.name == habitat.name ? "CORRECT!" : "ACTUALLY...";
         flavorText.text = matchData.flavorText;
 
-        //open results
+        //open results, but hide continue button (it will activate after flavor text is typed)
+        continueButton.gameObject.SetActive(false);
         resultsFade.blockRaycastCondition = UITransitionFade.BlockRaycastCondition.always;
         resultsFade.gameObject.SetActive(true);
+    }
+
+    void OnFlavorTextTyped(){
+
+        //show continue button
+        continueButton.gameObject.SetActive(true);
     }
 }

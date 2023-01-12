@@ -123,6 +123,8 @@ public class StickerSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
         stickerCG.alpha = 1;
         unlockButton.gameObject.SetActive(false);
+
+        postcardMaker.OnUnlockSticker();
     }
 
     public void LockSticker(){
@@ -134,6 +136,8 @@ public class StickerSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
         stickerCG.alpha = .3f;
         unlockButton.gameObject.SetActive(true);
+
+        postcardMaker.OnLockSticker();
     }
 
 
@@ -141,5 +145,8 @@ public class StickerSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
         if(data.unlockMethod == StickerSettings.UnlockMethod.habitatMatch && data.habitatMatch != null)
             postcardMaker.habitatMatch.Open(this);
+        
+        if(data.unlockMethod == StickerSettings.UnlockMethod.pollQuestion && data.pollQuestion != null)
+            postcardMaker.poll.Open(this);
     }
 }

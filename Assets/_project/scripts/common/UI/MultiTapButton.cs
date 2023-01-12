@@ -13,7 +13,18 @@ public class MultiTapButton : MonoBehaviour{
     public float maxInterval = .5f;
     [SerializeField][ReadOnly]float currentInterval;
 
-    Button button;
+    Button _button;
+    Button button{
+        get{
+            if(_button == null)
+            {
+                _button = GetComponent<Button>();
+                if(_button == null)
+                    _button = gameObject.AddComponent<Button>();
+            }
+            return _button;
+        }
+    }
 
 
     [System.Serializable]
@@ -24,12 +35,7 @@ public class MultiTapButton : MonoBehaviour{
     public MultiTapEvent onMultiTapFailure;
 
 
-    void Awake(){
-
-        button = GetComponent<Button>();
-
-        button.onClick.AddListener(ButtonAction);
-    }
+    void Awake(){ button.onClick.AddListener(ButtonAction); }
 
 
     void Update(){

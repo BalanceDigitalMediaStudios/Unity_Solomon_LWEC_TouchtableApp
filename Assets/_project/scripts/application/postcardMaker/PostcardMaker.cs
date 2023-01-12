@@ -30,6 +30,7 @@ public class PostcardMaker : ZonedMonobehaviour{
 
     [Header("Sticker Area")]
     [SerializeField] StickerSpawner spawnerPrefab;
+    [SerializeField] GameObject     unlockMoreText, unlockedAllText;
 
     [SerializeField] Transform      _unlockedGroup;
     public Transform unlockedGroup{get { return _unlockedGroup; } }
@@ -56,6 +57,9 @@ public class PostcardMaker : ZonedMonobehaviour{
     [Header("Unlocking Games")]
     [SerializeField] HabitatMatch _habitatMatch;
     public HabitatMatch habitatMatch{get { return _habitatMatch; } }
+
+    [SerializeField] Poll _poll;
+    public Poll poll{get { return _poll; } }
 
 
 
@@ -129,5 +133,19 @@ public class PostcardMaker : ZonedMonobehaviour{
 
         stickerCount--;
         transBinAnimator.CrossFadeInFixedTime("pulse", .25f, -1, 0f);
+    }
+
+
+    public void OnUnlockSticker(){
+
+        bool hasUnlockedAll = lockedGroup.GetComponentsInChildren<StickerSpawner>(true).Length == 0;
+
+        unlockMoreText.SetActive(!hasUnlockedAll);
+        unlockedAllText.SetActive(hasUnlockedAll);
+    }
+    public void OnLockSticker(){
+
+        unlockMoreText.SetActive(true);
+        unlockedAllText.SetActive(false);
     }
 }

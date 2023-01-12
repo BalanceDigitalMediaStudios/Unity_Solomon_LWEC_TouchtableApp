@@ -35,7 +35,9 @@ public class Help : ZonedMonobehaviour{
 
     void Awake(){
 
-        continueButton.onClick.AddListener(() => Close(transitionDuration));
+        sendPostcardColor_original = sendPostcardImage.color;
+
+        continueButton.onClick.AddListener(() => Close(transitionDuration));        
     }
 
     void OnEnable() { PostcardMaker.onHasInitialized += OnPostcardMakerInitialized; }
@@ -91,7 +93,7 @@ public class Help : ZonedMonobehaviour{
             circleColor_original        = lockedSpawner.circleImage.color;            
             StartCoroutine(FadeLockedStickerSpawner(lockedSpawner, duration, 1, Color.white, ReplaceColorChannels(circleColor_original, "a", .5f)));
         }
-        sendPostcardColor_original = sendPostcardImage.color;
+        
         if(duration > 0)
         {
             float t = 0;
@@ -159,14 +161,17 @@ public class Help : ZonedMonobehaviour{
 
      void AddCanvas(GameObject go){
 
-        Canvas canvas           = go.AddComponent<Canvas>();
+        Canvas canvas = go.GetComponent<Canvas>();        
+        if(canvas == null)
+            canvas = go.AddComponent<Canvas>();
+
         canvas.overrideSorting  = true;
         canvas.sortingOrder     = sortingOrder;
     }
     void RemoveCanvas(GameObject go){
 
         Canvas canvas = go.GetComponent<Canvas>();
-        if(canvas)
+        if(canvas != null)
             Destroy(canvas);
     }
     Color ReplaceColorChannels(Color input, string channels, float value){

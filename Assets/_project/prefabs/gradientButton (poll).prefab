@@ -184,7 +184,7 @@ MonoBehaviour:
   transitionTime: 0.67
   transitionTime_loop: 0
   interpolation: 2
-  actionOnEnable: 0
+  actionOnEnable: 2
   disableObjectAfter: 3
   originalPositionIs: 1
   offsetUsed: 1

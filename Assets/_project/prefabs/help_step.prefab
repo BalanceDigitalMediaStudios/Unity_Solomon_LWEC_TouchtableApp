@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnEnable: 1
-  delay: 0.5
+  delay: 0
   state: scaleIn_curved
 --- !u!224 &5757676077005719947 stripped
 RectTransform:
@@ -312,9 +312,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnEnable: 1
-  loop: 0
-  preDelay: 0
+  preDelay: 0.5
+  timingMethod: 1
   charInterval: 0.01
+  duration: 1
   postDelay: 0
   characters: 0
   _index: 0
+  onFinish:
+    m_PersistentCalls:
+      m_Calls: []

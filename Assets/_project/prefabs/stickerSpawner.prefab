@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_PressedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.75, g: 0.75, b: 0.75, a: 0.5}
     m_ColorMultiplier: 1
@@ -396,7 +396,7 @@ MonoBehaviour:
   image: {fileID: 580379325799526147}
   prefab: {fileID: 5644618791975947988, guid: 009a47a7e4a4fc14790d2d06d4b541f9, type: 3}
   instance: {fileID: 0}
-  data:
+  _data:
     name: 
     _sticker: {fileID: 0}
     _unlockMethod: 0

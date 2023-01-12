@@ -23,7 +23,7 @@ public class Poll_Result : MonoBehaviour{
         set {
 
             _percentCur         = value;
-            percentText.text    = (percentCur * 100).ToString("0.0");
+            percentText.text    = string.Format("{0:0%}", percentCur);
             fillRect.localScale = new Vector3(percentCur, 1, 1);
         }
     }
@@ -36,7 +36,7 @@ public class Poll_Result : MonoBehaviour{
     public void Initialize(string answer, float percent){
 
         answerText.text = answer;
-        this.percent    = percent;        
+        this.percent    = percent;
     }
 
     public void AnimateResult(){ AnimateResult(defaultDuration); }
@@ -54,7 +54,7 @@ public class Poll_Result : MonoBehaviour{
             while (t < 1)
             {
                 t += Time.deltaTime / duration;
-                float lerp = Mathf.Pow(t - 1f, 3f) + 1f;
+                float lerp = Mathf.SmoothStep(0, 1, Mathf.SmoothStep(0, 1, t));// Mathf.Pow(t - 1f, 3f) + 1f;
 
                 percentCur = Mathf.Lerp(0, percent, lerp);
                 yield return null;
