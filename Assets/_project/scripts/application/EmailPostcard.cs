@@ -18,7 +18,7 @@ public class EmailPostcard : MonoBehaviour{
     [Tooltip("After snapshot is taken, how should the image be rotated to orient correctly?")]
     [SerializeField] SnapshotMaker.Rotation correctiveRotation = SnapshotMaker.Rotation.none;
 
-    [SerializeField, ReadOnly, TexturePreview(100)] Texture2D outputTexture;
+    [SerializeField, ReadOnly, TexturePreview(200)] Texture2D outputTexture;
 
     [Header("Upload")]
     [SerializeField] string url;
@@ -84,7 +84,7 @@ public class EmailPostcard : MonoBehaviour{
     IEnumerator OpenRoutine(Texture2D texture){
 
         //store texture with correct rotation
-        texture.name = "Temp Postcard";
+        texture.name = "tempPostcard";
         outputTexture = SnapshotMaker.RotateTexture(texture, correctiveRotation);
         yield return new WaitForEndOfFrame();
 
@@ -188,6 +188,7 @@ public class EmailPostcard : MonoBehaviour{
 
         WWWForm form = new WWWForm();
         form.AddField("token", token);
+        form.AddField("email", inputField.text);
         form.AddBinaryData("uploadedFile", bytes, fileName, "image/jpg");
         
 

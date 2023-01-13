@@ -8124,7 +8124,7 @@ MonoBehaviour:
   correctiveRotation: 0
   outputTexture: {fileID: 0}
   url: dummyUrl
-  token: whatever
+  token: czBsMG0wbg==
   filePrefix: postcard
   minimumLoadingTime: 2
   mainFade: {fileID: 2722125723961222200}

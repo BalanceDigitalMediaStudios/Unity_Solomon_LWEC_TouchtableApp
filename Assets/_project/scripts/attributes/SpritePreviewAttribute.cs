@@ -103,10 +103,10 @@ public class SpritePreviewAttributeEditor: PropertyDrawer{
 
         //sprite name
         EditorGUI.BeginDisabledGroup(true);
-        string spriteName = string.Empty;
-        if(!property.hasMultipleDifferentValues && property.objectReferenceValue != null)
-            spriteName = property.objectReferenceValue.name;
-        GUI.Label(nameRect, spriteName);
+        string spriteName = "—";
+        if(!property.hasMultipleDifferentValues)
+            spriteName = property.objectReferenceValue != null ? property.objectReferenceValue.name : "None (Sprite)";
+        EditorGUI.LabelField(nameRect, spriteName);
         EditorGUI.EndDisabledGroup();
 
 
