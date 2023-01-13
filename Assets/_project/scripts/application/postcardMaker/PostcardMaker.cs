@@ -63,16 +63,6 @@ public class PostcardMaker : ZonedMonobehaviour{
 
 
 
-    [Header("Snapshot Settings")]
-    [SerializeField] string                 filePrefix = "snapshots\\filePrefix";
-    [SerializeField] Camera                 snapshotCamera;
-    [SerializeField] RectTransform          snapshotRect;
-    [Tooltip("Desired width of the image.  NOTE: This is used BEFORE image rotation, so images that are sideways should enter desired height instead")]
-    [SerializeField] int                    snapshotWidth;
-    [Tooltip("After snapshot is taken, how should the image be rotated to orient correctly?")]
-    [SerializeField] SnapshotMaker.Rotation correctiveRotation = SnapshotMaker.Rotation.none;
-    [SerializeField, ReadOnly] Texture2D    outputTexture;
-
 
 
     public void Initialize(HabitatData data){

@@ -63,6 +63,10 @@ PrefabInstance:
       propertyPath: _zoneId
       value: top
       objectReference: {fileID: 0}
+    - target: {fileID: 4014655793277222508, guid: 51660be5b1c5b5d4c90b5a6ba817135a, type: 3}
+      propertyPath: correctiveRotation
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5797097479732267815, guid: 51660be5b1c5b5d4c90b5a6ba817135a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.18922222

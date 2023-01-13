@@ -38,7 +38,7 @@ public class SnapshotTestEditor : Editor{
 #endif
 
 
-[CanEditMultipleObjects]
+
 public class SnapshotTest : MonoBehaviour{
 
     public Camera                   cam;
@@ -55,7 +55,7 @@ public class SnapshotTest : MonoBehaviour{
 
     public void SaveNormal(){
 
-        SnapshotMaker.instance.TakeSnapshot(cam, SnapshotMaker.RectTransformToScreenSpace(cam, rect), width, (texture) => 
+        SnapshotMaker.instance.TakeSnapshot(cam, SnapshotMaker.RectTransformToScreenSpaceRect(cam, rect), width, (texture) => 
         {
             Save(texture);
             //Store(texture);
@@ -63,7 +63,7 @@ public class SnapshotTest : MonoBehaviour{
     }
     public void SaveUpsideDown(){
 
-        SnapshotMaker.instance.TakeSnapshot(cam, SnapshotMaker.RectTransformToScreenSpace(cam, rect), width, (texture) => 
+        SnapshotMaker.instance.TakeSnapshot(cam, SnapshotMaker.RectTransformToScreenSpaceRect(cam, rect), width, (texture) => 
         {
             texture = SnapshotMaker.RotateTexture(texture, SnapshotMaker.Rotation.uTurn180);
             Save(texture);
@@ -73,7 +73,7 @@ public class SnapshotTest : MonoBehaviour{
 
     public void SaveClockwise(){
 
-        SnapshotMaker.instance.TakeSnapshot(cam, SnapshotMaker.RectTransformToScreenSpace(cam, rect), width, (texture) => 
+        SnapshotMaker.instance.TakeSnapshot(cam, SnapshotMaker.RectTransformToScreenSpaceRect(cam, rect), width, (texture) => 
         {
             texture = SnapshotMaker.RotateTexture(texture, SnapshotMaker.Rotation.clockwise90);
             Save(texture);
@@ -83,7 +83,7 @@ public class SnapshotTest : MonoBehaviour{
 
     public void SaveCounterClockwise(){
 
-        SnapshotMaker.instance.TakeSnapshot(cam, SnapshotMaker.RectTransformToScreenSpace(cam, rect), width, (texture) => 
+        SnapshotMaker.instance.TakeSnapshot(cam, SnapshotMaker.RectTransformToScreenSpaceRect(cam, rect), width, (texture) => 
         {
             texture = SnapshotMaker.RotateTexture(texture, SnapshotMaker.Rotation.counterClockwise90);
             Save(texture);
@@ -95,12 +95,10 @@ public class SnapshotTest : MonoBehaviour{
 
         string fileName = string.Format ("{0}_{1}.{2}", filePrefix, System.DateTime.Now.ToString ("yyyy-MM-dd_HH-mm-ss"), "jpg");
         string path     = Path.Combine(Application.streamingAssetsPath, fileName);
+        byte[] bytes    = texture.EncodeToJPG ();
 
-        SnapshotMaker.SaveToFile(texture, path, SnapshotMaker.Format.jpg);
+        System.IO.File.WriteAllBytes (path, bytes);
     }
 
-    void Store(Texture2D texture){
-
-        output = texture;
-    }
+    void Store(Texture2D texture){ output = texture; }
 }

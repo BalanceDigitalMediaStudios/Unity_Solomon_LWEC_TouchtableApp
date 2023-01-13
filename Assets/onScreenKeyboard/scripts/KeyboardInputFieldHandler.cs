@@ -1,22 +1,36 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 namespace OnScreenKeyboard{
 
     public class KeyboardInputFieldHandler : MonoBehaviour{
 
-        [SerializeField] Keyboard keyboard;
-        [SerializeField] Button[] endInputButtons;
+        [SerializeField] Keyboard           keyboard;
+        [SerializeField] KeyboardInputField defaultInputField;
+        [SerializeField] Button[]           endInputButtons;
 
         [Header("Debug")]
         [SerializeField, ReadOnly] TMP_InputField   inputField;
         [SerializeField, ReadOnly] string 	        currentText     = string.Empty;
 	    [SerializeField, ReadOnly] int 	            caretPostion 	= -1;
 
+        public UnityEvent onBeginInput, onEndInput;
+
         void Awake()    { foreach(Button b in endInputButtons) b.onClick.AddListener(EndInput); }
-        void OnEnable() { keyboard.onPressKey += OnPressKey; }
-        void OnDisable(){ keyboard.onPressKey -= OnPressKey; }
+        void OnEnable() {
+            
+            keyboard.onPressKey += OnPressKey;
+
+            if(defaultInputField)
+                BeginInput(defaultInputField.inputField);
+        }
+        void OnDisable(){ 
+            
+            keyboard.onPressKey -= OnPressKey;
+            EndInput();
+        }
         void Update(){
 
             if(inputField)
@@ -30,9 +44,10 @@ namespace OnScreenKeyboard{
             if(!inputField)
                 return;
 
-            currentText                 = inputField.text;
-            caretPostion                = currentText.Length;
-            inputField.caretColor       = Color.black;
+            currentText  = inputField.text;
+            caretPostion = currentText.Length;
+
+            onBeginInput.Invoke();
         }
 
         public void EndInput(){
@@ -48,6 +63,8 @@ namespace OnScreenKeyboard{
             inputField      = null;
             currentText     = "";
             caretPostion    = -1;
+
+            onEndInput.Invoke();
         }
 
 
@@ -92,7 +109,7 @@ namespace OnScreenKeyboard{
             inputField.Select();        //keyboard UI buttons will naturally take back selection, so we need to reselect the inputfield so the caret is visible
             inputField.text             = currentText;
             inputField.caretPosition    = caretPostion;
-            inputField.caretColor       = Color.black;
+            //inputField.caretColor       = Color.black;
         }
 
         void Backspace(){

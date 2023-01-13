@@ -20,6 +20,7 @@ public class HabitatData : ScriptableObject{
 
 
 
+#if UNITY_EDITOR
 
     void OnValidate(){
 
@@ -31,4 +32,7 @@ public class HabitatData : ScriptableObject{
                 stickers[i].name = string.Format("Element {0}", i);
         }
     }
+
+#endif
+
 }

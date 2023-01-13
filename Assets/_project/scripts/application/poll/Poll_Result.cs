@@ -54,7 +54,7 @@ public class Poll_Result : MonoBehaviour{
             while (t < 1)
             {
                 t += Time.deltaTime / duration;
-                float lerp = Mathf.SmoothStep(0, 1, Mathf.SmoothStep(0, 1, t));// Mathf.Pow(t - 1f, 3f) + 1f;
+                float lerp = /* Mathf.SmoothStep(0, 1, Mathf.SmoothStep(0, 1, t)); */ Mathf.Pow(t - 1f, 3f) + 1f;
 
                 percentCur = Mathf.Lerp(0, percent, lerp);
                 yield return null;

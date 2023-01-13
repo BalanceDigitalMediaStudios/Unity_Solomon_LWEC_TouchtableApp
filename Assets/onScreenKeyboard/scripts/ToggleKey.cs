@@ -40,6 +40,9 @@ namespace OnScreenKeyboard{
 
         void OnDestroy(){
 
+            if(!keyboard)
+                return;
+
             //add event listeners
             switch(tag)
             {

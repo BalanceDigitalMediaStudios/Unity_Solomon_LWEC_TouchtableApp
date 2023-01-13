@@ -45,6 +45,9 @@ namespace OnScreenKeyboard{
 
         void OnDestroy(){
 
+            if(!keyboard)
+                return;
+                
             keyboard.onSetCase -= OnSetCase;
         }
 

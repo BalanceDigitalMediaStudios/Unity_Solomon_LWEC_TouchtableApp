@@ -5,68 +5,49 @@ using UnityEngine.UI;
 
 
 /// <summary>
-/// Singleton that captures an area of the screen within a specified Rect and outputs to a texture at a desired resolution
+/// Singleton that captures an area of the screen and outputs to a texture
 /// </summary>
 public class SnapshotMaker : SimpleSingleton<SnapshotMaker>{
 
-    public enum Format      { jpg, png, exr };
-    public enum Rotation    { none, clockwise90, counterClockwise90, uTurn180 };
-
-
-    public static Rect RectTransformToScreenSpace(Camera camera, RectTransform rect){
-
-        //get corners in world space
-        Vector3[] corners  = new Vector3[4];
-        rect.GetWorldCorners(corners);
-
-        //create bounds using these corners to negate rotation, scaling, etc
-        Bounds bounds = new Bounds(corners[0], Vector3.zero);
-        for(int i = 1; i < 4; i++)
-            bounds.Encapsulate(corners[i]);        
-
-        //convert bounds to screen space corners (0 = bottom left, 1 = top left, 2 = top right, 3 = bottom right)
-        Vector3[] screenCorners  = new Vector3[4];
-        screenCorners[0] = RectTransformUtility.WorldToScreenPoint(camera, bounds.min);
-        screenCorners[1] = RectTransformUtility.WorldToScreenPoint(camera, bounds.min + new Vector3(0, bounds.size.y, 0));
-        screenCorners[2] = RectTransformUtility.WorldToScreenPoint(camera, bounds.max);
-        screenCorners[3] = RectTransformUtility.WorldToScreenPoint(camera, bounds.min + new Vector3(bounds.size.x, 0, 0));
-
-        //invert rect yPos so that top corner of screen is 0, get size by subtracting opposite corners
-        Vector2 position    = screenCorners[1];
-        position.y          = camera.pixelHeight - position.y;
-        Vector2 size        = screenCorners[2] - screenCorners[0];
-        
-        //return screen space rect
-        Rect screenRect = new Rect(position, size);
-        return screenRect;
-    }
+    public enum Rotation { none, clockwise90, counterClockwise90, uTurn180 };  
 
 
     /// <summary>
-    /// Creates a texture at the specified resolution with from a specified camera within the bounds of a screen space rect.
+    /// Creates a texture within the bounds of a screen space rect.  Output resolution is dimension of rect in screen space.
     /// </summary>
     /// <param name="camera"> Camera to render snapshot </param>
     /// <param name="screenRect"> Rect in screen space relative to camera </param>
     /// <param name="onTextureCreated"> Event called that contains the resulting texture </param>
+    public void TakeSnapshot(Camera camera, Rect screenRect, System.Action<Texture2D> onTextureCreated){
+
+        TakeSnapshot(camera, screenRect, 1f, onTextureCreated);
+    }
+
+    /// <summary>
+    /// Creates a texture within the bounds of a screen space rect.  Output resolution is scaled to have specified width.
+    /// </summary>
+    /// <param name="camera"> Camera to render snapshot </param>
+    /// <param name="screenRect"> Rect in screen space relative to camera </param>
     /// <param name="width"> Upscales output texture to this width </param>
+    /// <param name="onTextureCreated"> Event called that contains the resulting texture </param>   
     public void TakeSnapshot(Camera camera, Rect screenRect, int width, System.Action<Texture2D> onTextureCreated){
 
-        StartCoroutine(SnapshotRoutine(camera, screenRect, onTextureCreated, (float)width/screenRect.width));
+        TakeSnapshot(camera, screenRect, (float)width/screenRect.width, onTextureCreated);
     }
 
     /// <summary>
-    /// Creates a texture from a specified camera within the bounds of a screen space rect.  The texture can be supersampled for higher resolutions.
+    /// Creates a texture within the bounds of a screen space rect.  Output resolution is scaled by supersampling.
     /// </summary>
     /// <param name="camera"> Camera to render snapshot </param>
     /// <param name="screenRect"> Rect in screen space relative to camera </param>
-    /// <param name="onTextureCreated"> Event called that contains the resulting texture </param>
     /// <param name="supersampling"> Upscales output texture by multiplier </param>
-    public void TakeSnapshot(Camera camera, Rect screenRect, System.Action<Texture2D> onTextureCreated, float supersampling = 1){
+    /// <param name="onTextureCreated"> Event called that contains the resulting texture </param> 
+    public void TakeSnapshot(Camera camera, Rect screenRect, float supersampling, System.Action<Texture2D> onTextureCreated){
 
-        StartCoroutine(SnapshotRoutine(camera, screenRect, onTextureCreated, supersampling));
-    }
+        StartCoroutine(SnapshotRoutine(camera, screenRect, supersampling, onTextureCreated));
+    }    
 
-    IEnumerator SnapshotRoutine(Camera camera, Rect screenRect, System.Action<Texture2D> onTextureCreated, float supersampling = 1){
+    IEnumerator SnapshotRoutine(Camera camera, Rect screenRect, float supersampling, System.Action<Texture2D> onTextureCreated){
         
         System.DateTime startTime = System.DateTime.Now;
         Debug.LogFormat("Capturing snapshot of screen area - X: {0} Y: {1} Width: {2} Height: {3}\nSupersampling: {4}",
@@ -104,6 +85,7 @@ public class SnapshotMaker : SimpleSingleton<SnapshotMaker>{
 
 
         //send result texture via event
+        yield return new WaitForEndOfFrame();
         onTextureCreated(texture);
         System.TimeSpan duration = System.DateTime.Now.Subtract(startTime);
         Debug.LogFormat ("Snapshot captured in {0} sec, resolution: {1} x {2}", duration.TotalSeconds.ToString("F3"), texture.width, texture.height);
@@ -111,50 +93,44 @@ public class SnapshotMaker : SimpleSingleton<SnapshotMaker>{
 
 
     
-
-
     /// <summary>
-    /// Helper function to convert texture into encoded byte array
+    /// Helper function to convert a RectTransform into a Rect in screen space
     /// </summary>
-    /// <param name="texture"> Texture to convert </param>
-    /// <param name="format"> File format to encode </param>
-    /// <returns> Texture's encoded byte array </returns>
-    public static byte[] EncodeTexture(Texture2D texture, Format format = Format.jpg){
+    /// <param name="camera"> Camera to view RectTransform from </param>
+    /// <param name="rectTransform"> RectTransform to convert </param>
+    /// <returns> Rect in screen space </returns>
+    public static Rect RectTransformToScreenSpaceRect(Camera camera, RectTransform rectTransform){
 
-        byte[] bytes;
+        //get corners in world space
+        Vector3[] corners  = new Vector3[4];
+        rectTransform.GetWorldCorners(corners);
 
-        switch (format)
-		{
-		case Format.jpg:
-			bytes = texture.EncodeToJPG ();
-			break;
-		case Format.png:
-			bytes = texture.EncodeToPNG ();
-			break;
-		default:
-			bytes = texture.EncodeToEXR ();
-			break;
-		}
+        //create bounds using these corners to negate rotation, scaling, etc
+        Bounds bounds = new Bounds(corners[0], Vector3.zero);
+        for(int i = 1; i < 4; i++)
+            bounds.Encapsulate(corners[i]);        
 
-        return bytes;
+        //convert bounds to screen space corners (0 = bottom left, 1 = top left, 2 = top right, 3 = bottom right)
+        Vector3[] screenCorners  = new Vector3[4];
+        screenCorners[0] = RectTransformUtility.WorldToScreenPoint(camera, bounds.min);
+        screenCorners[1] = RectTransformUtility.WorldToScreenPoint(camera, bounds.min + new Vector3(0, bounds.size.y, 0));
+        screenCorners[2] = RectTransformUtility.WorldToScreenPoint(camera, bounds.max);
+        screenCorners[3] = RectTransformUtility.WorldToScreenPoint(camera, bounds.min + new Vector3(bounds.size.x, 0, 0));
+
+        //invert rect yPos so that top corner of screen is 0, get size by subtracting opposite corners
+        Vector2 position    = screenCorners[1];
+        position.y          = camera.pixelHeight - position.y;
+        Vector2 size        = screenCorners[2] - screenCorners[0];
+        
+        //return screen space rect
+        Rect screenRect = new Rect(position, size);
+        return screenRect;
     }
-    
 
-    /// <summary>
-    /// Helper function to save a texure to disk as an image
-    /// </summary>
-    /// <param name="texture"> Texture to convert </param>
-    /// <param name="path"> Path to save file to </param>
-    /// <param name="format"> File format to encode </param>
-    public static void SaveToFile(Texture2D texture, string path, Format format = Format.jpg){
-
-		System.IO.File.WriteAllBytes (path, EncodeTexture(texture, format));
-		//Debug.Log ("Snapshot saved: " + path);
-	}
 
 
     /// <summary>
-    /// Helper function to rotate a texture in 90 degree intervals
+    /// Helper function to rotate a texture to other orientations
     /// </summary>
     /// <param name="input"> Texture to rotate </param>
     /// <param name="rotation"> Direction of rotation </param>

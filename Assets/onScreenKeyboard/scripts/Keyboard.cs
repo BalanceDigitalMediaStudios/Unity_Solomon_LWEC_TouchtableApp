@@ -46,6 +46,17 @@ namespace OnScreenKeyboard{
 
         
 
+        /*void Awake(){
+
+            Application.quitting += ClearEventListeners;
+        }        
+        void ClearEventListeners(){
+
+            onSetCase   = null;
+            onSetShift  = null;
+            onSetCaps   = null;            
+        }*/
+
 
         void Start(){ Initialize(); }
         void Initialize(){
@@ -69,6 +80,8 @@ namespace OnScreenKeyboard{
             //store last non-keyboard key selection
             lastSelection = GetCurrentSelectedGameObject();
         }
+
+        
 
         public GameObject GetCurrentSelectedGameObject(){
 
@@ -161,7 +174,7 @@ namespace OnScreenKeyboard{
                 SetShift(false);
         }
 
-        void SetShift(bool shift){
+        public void SetShift(bool shift){
 
             isShift = shift;
             UpdateCase();
@@ -169,7 +182,7 @@ namespace OnScreenKeyboard{
             if(onSetShift != null)
                 onSetShift(isShift);
         }
-        void SetCapsLock(bool caps){
+        public void SetCapsLock(bool caps){
 
             isCaps = caps;
             UpdateCase();

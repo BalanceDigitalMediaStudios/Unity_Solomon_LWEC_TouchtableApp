@@ -49,7 +49,9 @@ public class UITransitionSize : MonoBehaviour {
 			positionEnd 	= (originalPositionIs == PositionUse.start 	? currentSize + secondPosition 	: currentSize);
 			break;
 		}
-	}
+
+        //Debug.LogFormat("Start: {0}\nEnd:   {1}", positionStart, positionEnd);
+    }
 
 
 	void OnEnable(){

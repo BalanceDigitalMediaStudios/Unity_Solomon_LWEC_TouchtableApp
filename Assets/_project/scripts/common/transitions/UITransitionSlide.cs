@@ -78,11 +78,17 @@ public class UITransitionSlide : MonoBehaviour {
 
 
 	public void TransitionToEnd(bool myStartFromCurrentPosition){
-		
-		StopAllCoroutines ();
+
+		if(!gameObject.activeInHierarchy)
+            return;
+
+        StopAllCoroutines ();
 		StartCoroutine(TransitionRoutine((myStartFromCurrentPosition ? rectTransform.anchoredPosition3D : positionStart), positionEnd, transitionTime, delayTime));
 	}
 	public void TransitionToEnd(bool myStartFromCurrentPosition, float myTransitionTime, float myDelayTime){
+
+		if(!gameObject.activeInHierarchy)
+            return;
 
 		StopAllCoroutines ();
 		StartCoroutine(TransitionRoutine((myStartFromCurrentPosition ? rectTransform.anchoredPosition3D : positionStart), positionEnd, myTransitionTime, myDelayTime));
@@ -91,10 +97,16 @@ public class UITransitionSlide : MonoBehaviour {
 
 	public void TransitionToStart(bool myStartFromCurrentPosition){
 
+		if(!gameObject.activeInHierarchy)
+            return;
+
 		StopAllCoroutines ();
 		StartCoroutine(TransitionRoutine((myStartFromCurrentPosition ? rectTransform.anchoredPosition3D : positionEnd), positionStart, transitionTime, delayTime));
 	}
 	public void TransitionToStart(bool myStartFromCurrentPosition, float myTransitionTime, float myDelayTime){
+
+		if(!gameObject.activeInHierarchy)
+            return;
 
 		StopAllCoroutines ();
 		StartCoroutine(TransitionRoutine((myStartFromCurrentPosition ? rectTransform.anchoredPosition3D : positionEnd), positionStart, myTransitionTime, myDelayTime));
@@ -103,9 +115,15 @@ public class UITransitionSlide : MonoBehaviour {
 
 	public void TransitionToPosition(Vector3 endPosition){
 
+		if(!gameObject.activeInHierarchy)
+            return;
+
 		TransitionToPosition(endPosition, transitionTime, delayTime);
 	}
 	public void TransitionToPosition(Vector3 endPosition, float transitionTime, float delayTime){
+
+		if(!gameObject.activeInHierarchy)
+            return;
 
 		StopAllCoroutines ();
 		StartCoroutine (TransitionRoutine(rectTransform.anchoredPosition3D,endPosition,transitionTime,delayTime));

@@ -192,10 +192,10 @@ public class Poll : UnlockActivity{
         //animate result percentages
         yield return new WaitForSeconds(resultsPercentageDelay);
         foreach(Poll_Result r in results)
-            r.AnimateResult(2f);        
+            r.AnimateResult(1f);        
 
         //activate continue button
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         continueButton.gameObject.SetActive(true);
     }
 
