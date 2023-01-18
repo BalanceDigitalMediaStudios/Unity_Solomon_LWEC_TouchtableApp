@@ -3,41 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Poll : UnlockActivity{
 
     [SerializeField] float optionsSlideInterval;  //seconds between each answer/result sliding in or out from screen
 
-    [Header("Question")]    
-    [SerializeField] UITransitionFade   questionFade;    
-    [SerializeField] UITransitionSlide  questionTitleSlide;
-    [SerializeField] TextMeshProUGUI    questionText;
-    [SerializeField] TMP_TypeOutEffect  questionTyping;    
+    [Header("Upload")]
+    [SerializeField] string             url;
+    [SerializeField] string             token;
+    [SerializeField] float              minimumLoadingTime;
+    [SerializeField] UITransitionFade   loadingFade;
 
+    [Header("Question")]
+    [SerializeField] UITransitionFade   questionFade;
+    [SerializeField] UITransitionSlide  questionTitleSlide;
+    [SerializeField] UITransitionSlide  resultsTitleSlide;
+    [SerializeField] TextMeshProUGUI    questionText;
+    [SerializeField] TMP_TypeOutEffect  questionTyping;
+    [SerializeField] UITransitionFade   backButtonFade;    
+
+    [Header("Answers")]
+    [SerializeField] CanvasGroup        answersCG;
     [SerializeField] Poll_Answer[]      answers;
     [SerializeField] float              answerSlideInDelay;
     [SerializeField] float              answerSlideOutDelay;
-    [SerializeField] UITransitionFade   backButtonFade;
 
     [Header("Results")]
-    [SerializeField] UITransitionFade   resultsFade;
-    [SerializeField] UITransitionSlide  resultsTitleSlide;
+    [SerializeField] GameObject         resultsGroup;
     [SerializeField] Poll_Result[]      results;
     [SerializeField] float              resultsSlideInDelay;
     [SerializeField] float              resultsPercentageDelay;
+
+    [Header("Fail")]
+    [SerializeField] UITransitionFade   failFade;
+    [SerializeField] TMP_TypeOutEffect  failMessageTyping;
+    [SerializeField] Button             failContinueButton;
 
 
     PollQuestionData pollData;
     const string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    int[]   tallies; //stores count of each answer
-    int     total;   //total count of all answers
-
-
 
     void OnEnable(){
 
-        questionTyping.onFinish.AddListener(OnFinishedTypingQuestion);
+        questionTyping.     onFinish.AddListener(OnQuestionTyped);
+        failMessageTyping.  onFinish.AddListener(OnFailMessageTyped);
+
+        failContinueButton. onClick.AddListener(Close);
 
         for (int i = 0; i < answers.Length; i++)
             answers[i].onSelectAnswer += OnSelectAnswer;
@@ -45,7 +58,8 @@ public class Poll : UnlockActivity{
     }
     void OnDisable(){
 
-        questionTyping.onFinish.RemoveListener(OnFinishedTypingQuestion);
+        questionTyping.     onFinish.RemoveListener(OnQuestionTyped);
+        failMessageTyping.  onFinish.RemoveListener(OnFailMessageTyped);
 
         for (int i = 0; i < answers.Length; i++)
             answers[i].onSelectAnswer -= OnSelectAnswer;
@@ -58,16 +72,18 @@ public class Poll : UnlockActivity{
 
         base.Open(spawner);
 
-        //enable question and back button, and disable results
-        questionFade.gameObject.SetActive(true);
-        questionFade.blockRaycastCondition = UITransitionFade.BlockRaycastCondition.always;
-        questionFade.TransitionToEnd(true, questionFade.transitionTime, questionFade.delayTime);
-        backButtonFade.blockRaycastCondition = UITransitionFade.BlockRaycastCondition.always;
-        backButtonFade.gameObject.SetActive(true);
+        //enable question, answers, and back button.  Disable results, loading graphic, and fail screen.
+        questionFade.   gameObject.SetActive(true);
+        answersCG.      blocksRaycasts = true;
+        backButtonFade. blockRaycastCondition = UITransitionFade.BlockRaycastCondition.always;
+        backButtonFade. gameObject.SetActive(true);
         backButtonFade.TransitionToEnd(true);
 
-        resultsFade.gameObject.SetActive(false);
-        resultsTitleSlide.gameObject.SetActive(false);
+        resultsTitleSlide.  gameObject.SetActive(false);
+        resultsGroup.       gameObject.SetActive(false);        
+        failFade.           gameObject.SetActive(false);
+        loadingFade.        gameObject.SetActive(false);
+
 
         //assign data        
         pollData            = spawner.data.pollQuestion;
@@ -75,19 +91,15 @@ public class Poll : UnlockActivity{
     }
 
     //fires once the question has finished typing
-    void OnFinishedTypingQuestion(){
+    void OnQuestionTyped(){
 
         //assign answers
         for (int i = 0; i < answers.Length && i < pollData.answers.Length; i++)
-            answers[i].Initialize(letters[i].ToString(), pollData.answers[i]);
+            answers[i].Initialize(letters[i].ToString(), pollData.answers[i]);        
 
-        //animate answers onto screen
-        List<UITransitionSlide> slides = new List<UITransitionSlide>(0);
-        foreach(Poll_Answer a in answers)
-            slides.Add(a.slide);
-
+        //slide in answers
         StopAllCoroutines();
-        StartCoroutine(SlideInRoutine(slides.ToArray(), answerSlideInDelay, optionsSlideInterval));
+        StartCoroutine(SlideInRoutine(answers.Select(x => x.slide).ToArray(), answerSlideInDelay, optionsSlideInterval));
     }
 
     
@@ -122,43 +134,94 @@ public class Poll : UnlockActivity{
         }
     }
 
+    Vector3 ReplaceAxis(Vector3 input, string axis, float value){
+
+        Vector3 output = input;
+
+        if(axis.ToLower().Contains("x")) output.x = value;
+        if(axis.ToLower().Contains("y")) output.y = value;
+        if(axis.ToLower().Contains("z")) output.z = value;
+
+        return output;
+    }
+
+    
     void OnSelectAnswer(Poll_Answer answer){
+
+        //disable selecting any more buttons and fade out back button
+        answersCG.blocksRaycasts = false;
+        backButtonFade.blockRaycastCondition = UITransitionFade.BlockRaycastCondition.never;
+        if(backButtonFade.gameObject.activeInHierarchy) backButtonFade.TransitionToStart(true);
+
+        //fade in loading graphic
+        loadingFade.gameObject.SetActive(true);
+
+        UploadAnswer(pollData, answer, url, OnSuccess, OnFail);
+    }
+    
+    /* void OnSelectAnswer(Poll_Answer answer){
+
+        //disable selecting any more buttons and fade out back button
+        answersCG.blocksRaycasts = false;
+        backButtonFade.blockRaycastCondition = UITransitionFade.BlockRaycastCondition.never;
+        if(backButtonFade.gameObject.activeInHierarchy) backButtonFade.TransitionToStart(true);
 
         //increment tally for selected answer and save to disk
         int tally = GetTally(pollData, answer);
         SetTally(pollData, answer, tally + 1);
         PlayerPrefs.Save();
 
-        //how results
+        //show results
         StopAllCoroutines();
         StartCoroutine(GoToResultsRoutine());
     }
+    string  GetPrefId(PollQuestionData question, Poll_Answer answer)            { return string.Format("{0}_{1}", question.name, answer.answerId); }
+    int     GetTally (PollQuestionData question, Poll_Answer answer)            { return PlayerPrefs.GetInt(GetPrefId(question, answer), 0); }
+    void    SetTally (PollQuestionData question, Poll_Answer answer, int value) { PlayerPrefs.SetInt(GetPrefId(question, answer), value); } */
 
-    IEnumerator GoToResultsRoutine(){
+    
 
-        //disable selecting any more buttons andfade out back button
-        questionFade.canvasGroup.blocksRaycasts = false;
-        backButtonFade.blockRaycastCondition = UITransitionFade.BlockRaycastCondition.never;
-        if(backButtonFade.gameObject.activeInHierarchy) backButtonFade.TransitionToStart(true);
+    void UploadAnswer(PollQuestionData question, Poll_Answer answer, string url, System.Action<string> onSuccess, System.Action<string> onFail){
+        
+        WWWForm form = new WWWForm();
+        form.AddField("token",      token);
+        form.AddField("questionId", question.name);
+        form.AddField("answerId",   answer.answerId);
+
+        Debug.LogFormat("Form upload parameters:\n{0}{1}\n{2}{3}\n{4}{5}",
+            string.Format("   {0, -12}", "token:"),         FormUploader.Colorize(token, "yellow"),
+            string.Format("   {0, -12}", "questionId:"),    FormUploader.Colorize(question.name, "yellow"),
+            string.Format("   {0, -12}", "answerId:"),      FormUploader.Colorize(answer.answerId, "yellow"));
+        FormUploader.instance.Upload(form, url, minimumLoadingTime, onSuccess, onFail);
+    }
 
 
-        //get tallies ans width of window
-        float   width       = (transform as RectTransform).rect.width;
-        int[]   tallies     = new int[answers.Length];
-        int     total       = 0;
-        string  debugLog    = string.Empty;
-        for (int i = 0; i < answers.Length; i++)
+    void OnSuccess(string response){
+
+        //parse tallies from response
+        string[]    split   = response.Split(',', 4);
+        int[]       tallies = new int[4];
+        int         total   = 0;
+        for (int i = 0; i < split.Length; i++)
         {
-            tallies[i] = GetTally(pollData, answers[i]);
+            int parsed;
+            if(int.TryParse(split[i], out parsed))
+                tallies[i] = parsed;
             total += tallies[i];
-
-            debugLog += string.Format("{0} Tally: {1}\n", GetPrefId(pollData, answers[i]), tallies[i]);
         }
-        debugLog += string.Format("Total: {0}", total);
-        Debug.Log(debugLog);
+
+        StopAllCoroutines();
+        StartCoroutine(ShowResultsRoutine(tallies, total));
+    }
+    IEnumerator ShowResultsRoutine(int[] tallies, int total){
+
+        //get width of window for use in animations
+        float width = (transform as RectTransform).rect.width;
+
+        //fade out loading graphic
+        loadingFade.TransitionToStart(true);
 
         //slide out question title to the left and slide in results title from the right
-        yield return new WaitForSeconds(1f);
         questionTitleSlide.TransitionToPosition(ReplaceAxis(questionTitleSlide.rectTransform.anchoredPosition3D, "x", -width));
         resultsTitleSlide.gameObject.SetActive(true);
         resultsTitleSlide.rectTransform.anchoredPosition3D = ReplaceAxis(resultsTitleSlide.rectTransform.anchoredPosition3D, "x", width);
@@ -167,32 +230,27 @@ public class Poll : UnlockActivity{
 
         //slide out answers to the left
         yield return new WaitForSeconds(answerSlideOutDelay);
-        List<UITransitionSlide> slides = new List<UITransitionSlide>(0);
-        foreach(Poll_Answer a in answers)
-            slides.Add(a.slide);
-        StartCoroutine(SlideRoutine(slides.ToArray(), "x", -width, 0, optionsSlideInterval));
+        StartCoroutine(SlideRoutine(answers.Select(x => x.slide).ToArray(), "x", -width, 0, optionsSlideInterval));
         
 
-        //assign and slide in results from the right
+        //activate, assign, and position results
         yield return new WaitForSeconds(resultsSlideInDelay);
-        resultsFade.    gameObject.SetActive(true);
+        resultsGroup.   gameObject.SetActive(true);
         continueButton. gameObject.SetActive(false);
-
-        slides = new List<UITransitionSlide>(0);
         for (int i = 0; i < results.Length; i++)
         {
             RectTransform rect = results[i].slide.rectTransform;
             rect.anchoredPosition3D = ReplaceAxis(rect.anchoredPosition3D, "x", width);
             results[i].Initialize(pollData.answers[i], (float)tallies[i]/(float)total);
-            slides.Add(results[i].slide);
         }
-        StartCoroutine(SlideRoutine(slides.ToArray(), "x", 0, 0, optionsSlideInterval));
+
+        //slide in results from the right
+        StartCoroutine(SlideRoutine(results.Select(x => x.slide).ToArray(), "x", 0, 0, optionsSlideInterval));
 
 
         //animate result percentages
         yield return new WaitForSeconds(resultsPercentageDelay);
-        foreach(Poll_Result r in results)
-            r.AnimateResult(1f);        
+        foreach(Poll_Result r in results) r.AnimateResult(1f);        
 
         //activate continue button
         yield return new WaitForSeconds(2f);
@@ -200,33 +258,15 @@ public class Poll : UnlockActivity{
     }
 
 
+    void OnFail(string error){
 
-    string GetPrefId(PollQuestionData question, Poll_Answer answer){
-
-        return string.Format("{0}_{1}", question.name, answer.answerId);
+        //fade out question, and fade in fail screen
+        questionFade.TransitionToStart(true);
+        failFade.gameObject.SetActive(true);
+        failContinueButton.gameObject.SetActive(false);
     }
+    void OnFailMessageTyped(){
 
-    int GetTally(PollQuestionData question, Poll_Answer answer){
-
-        return PlayerPrefs.GetInt(GetPrefId(question, answer), 0);
-    }
-
-    void SetTally(PollQuestionData question, Poll_Answer answer, int value){
-
-        PlayerPrefs.SetInt(GetPrefId(question, answer), value);
-    }
-
-    Vector3 ReplaceAxis(Vector3 input, string axis, float value){
-
-        Vector3 output = input;
-
-        if(axis.ToLower().Contains("x"))
-            output.x = value;
-        if(axis.ToLower().Contains("y"))
-            output.y = value;
-        if(axis.ToLower().Contains("z"))
-            output.z = value;
-
-        return output;
+        failContinueButton.gameObject.SetActive(true);
     }
 }

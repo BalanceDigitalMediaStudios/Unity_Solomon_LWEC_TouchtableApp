@@ -106,10 +106,8 @@ public class PostcardMaker : ZonedMonobehaviour{
 
         for (int i = 0; i < data.stickers.Length; i++)
         {
-            StickerSpawner  newSpawner      = Instantiate(spawnerPrefab, unlockedGroup);
-            newSpawner.transform.localScale = Vector3.one;
-            string          newName         = string.Format("{0}_{1}", spawnerPrefab.name, data.stickers[i].sticker.longName);
-
+            StickerSpawner  newSpawner  = Instantiate(spawnerPrefab, unlockedGroup);            
+            string          newName     = string.Format("{0}_{1}", spawnerPrefab.name, data.stickers[i].sticker.longName);
             newSpawner.Initialize(data.stickers[i], newName);
         }
     }

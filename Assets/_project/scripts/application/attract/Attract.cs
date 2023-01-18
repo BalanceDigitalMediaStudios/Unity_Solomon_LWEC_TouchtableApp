@@ -64,10 +64,9 @@ public class Attract : ZonedMonobehaviour{
                 t += Time.deltaTime / duration;
                 float lerp = Mathf.SmoothStep(0, 1, Mathf.SmoothStep(0, 1, t));
 
-                //scale in experience from button location while fading in
+                //scale in experience from button location
                 experienceCG.transform.localPosition    = Vector3.Lerp(localPosStart, Vector3.zero, lerp);
                 experienceCG.transform.localScale       = Vector3.Lerp(Vector3.zero, Vector3.one, lerp);
-                //experienceCG.alpha                      = Mathf.Lerp(0, 1, lerp);
 
                 yield return null;
             }
@@ -77,7 +76,6 @@ public class Attract : ZonedMonobehaviour{
         attractCG.gameObject.SetActive(false);
         experienceCG.transform.localPosition    = Vector3.zero;
         experienceCG.transform.localScale       = Vector3.one;
-        experienceCG.alpha                      = 1;
         experienceCG.blocksRaycasts             = true;
     }
 

@@ -4,11 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Text.RegularExpressions;
-using UnityEngine.Networking;
 using OnScreenKeyboard;
 
 
 public class EmailPostcard : MonoBehaviour{    
+
+    [Header("Upload")]
+    [SerializeField] string url;
+    [SerializeField] string token;
+    [SerializeField] string filePrefix = "snapshots\\filePrefix";
+    [SerializeField] float  minimumLoadingTime;
 
     [Header("Snapshot")]    
     [SerializeField] Camera                 snapshotCamera;
@@ -17,18 +22,10 @@ public class EmailPostcard : MonoBehaviour{
     [SerializeField] int                    snapshotWidth;
     [Tooltip("After snapshot is taken, how should the image be rotated to orient correctly?")]
     [SerializeField] SnapshotMaker.Rotation correctiveRotation = SnapshotMaker.Rotation.none;
-
     [SerializeField, ReadOnly, TexturePreview(200)] Texture2D outputTexture;
 
-    [Header("Upload")]
-    [SerializeField] string url;
-    [SerializeField] string token;
-    [SerializeField] string filePrefix = "snapshots\\filePrefix";
-    [SerializeField] float  minimumLoadingTime;
-
-
     [Header("Main")]
-    [SerializeField] UITransitionFade   mainFade;
+    [SerializeField] UITransitionFade mainFade;
 
     [Header("Enter Email Screen")]
     [SerializeField] UITransitionFade   entryFade;
@@ -111,7 +108,6 @@ public class EmailPostcard : MonoBehaviour{
         //select input field
         handler.BeginInput(inputField);
     }
-
     void Close(){
 
         mainFade.blockRaycastCondition = UITransitionFade.BlockRaycastCondition.never;
@@ -145,6 +141,23 @@ public class EmailPostcard : MonoBehaviour{
         confirmPostLoadFade.gameObject.SetActive(true);
     }
 
+
+    void UploadTexture(Texture2D tex, string url, System.Action<string> onSuccess, System.Action<string> onFail){
+
+        byte[] bytes = tex.EncodeToJPG(100);
+        string fileName = string.Format("{0}_{1}.{2}", filePrefix, System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"), "jpg");
+        
+        WWWForm form = new WWWForm();
+        form.AddField("token", token);
+        form.AddField("email", inputField.text);
+        form.AddBinaryData("uploadedFile", bytes, fileName, "image/jpg");
+
+        Debug.LogFormat("Form upload parameters:\n{0}{1}\n{2}{3}\n{4}{5}",
+            string.Format("   {0, -14}", "token:"),         FormUploader.Colorize(token, "yellow"),
+            string.Format("   {0, -14}", "email:"),         FormUploader.Colorize(inputField.text, "yellow"),
+            string.Format("   {0, -14}", "uploadedFile:"),  FormUploader.Colorize(string.Format("{0} bytes", bytes.Length.ToString()), "yellow"));
+        FormUploader.instance.Upload(form, url, minimumLoadingTime, onSuccess, onFail);
+    }
     void OnSuccess(string response){
 
         //set text and open results screen
@@ -172,48 +185,4 @@ public class EmailPostcard : MonoBehaviour{
 
         continueButton.gameObject.SetActive(true);
     }
-
-    
-
-
-    void UploadTexture(Texture2D tex, string url, System.Action<string> onSuccess, System.Action<string> onFail = null){
-
-        StartCoroutine(UploadTextureRoutine(tex, url, onSuccess, onFail));
-    }
-    IEnumerator UploadTextureRoutine(Texture2D tex, string url, System.Action<string> onSuccess, System.Action<string> onFail = null){
-
-        byte[] bytes    = tex.EncodeToJPG(100);
-        string fileName = string.Format ("{0}_{1}.{2}", filePrefix, System.DateTime.Now.ToString ("yyyy-MM-dd_HH-mm-ss"), "jpg");
-
-
-        WWWForm form = new WWWForm();
-        form.AddField("token", token);
-        form.AddField("email", inputField.text);
-        form.AddBinaryData("uploadedFile", bytes, fileName, "image/jpg");
-        
-
-        Debug.LogFormat("Attempting to upload {0} to {1}", Colorize(fileName, "yellow"), Colorize(url,"yellow"));
-        using(UnityWebRequest request = UnityWebRequest.Post(url, form))
-        {
-            float startTime = Time.time;
-
-            yield return request.SendWebRequest();
-            while(Time.time - startTime < minimumLoadingTime)
-                yield return null;
-
-
-            if(request.result == UnityWebRequest.Result.Success)
-            {
-                Debug.LogFormat("Upload succeeded:\n{0}", Colorize(request.downloadHandler.text, "yellow"));
-                onSuccess.Invoke(request.downloadHandler.text);
-            }
-            else
-            {
-                Debug.LogFormat("Upload failed:\n{0}", Colorize(request.downloadHandler.error, "red"));
-                onFail.Invoke(request.downloadHandler.error);
-            }
-        }
-    }
-
-    string Colorize(string input, string color){ return $"<color={color}>{input}</color>"; }
 }

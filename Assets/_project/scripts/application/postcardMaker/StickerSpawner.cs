@@ -49,6 +49,7 @@ public class StickerSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
         this._data  = data;
         this.name   = name;
+        
         if (data != null && data.sticker != null)
         {
             if(data.sticker.sprite != null)
@@ -59,6 +60,7 @@ public class StickerSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHand
             else
                 LockSticker();
         }
+        transform.localScale = Vector3.one;
     }
 
 
@@ -118,7 +120,7 @@ public class StickerSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
         isUnlocked = true;
 
-        transform.SetParent(postcardMaker.unlockedGroup);
+        transform.SetParent(postcardMaker.unlockedGroup);        
         transform.SetAsLastSibling();
 
         stickerCG.alpha = 1;

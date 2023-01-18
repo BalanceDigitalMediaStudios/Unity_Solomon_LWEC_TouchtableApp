@@ -55,8 +55,6 @@ MonoBehaviour:
   draggingScaleMultiplier: 1.2
   worldSize: {x: 0, y: 0}
   removalTolerance: 0.33
-  removalDistance: {x: 1, y: 10}
-  removalDuration: {x: 0.33, y: 0.5}
   removalTimingCurve:
     serializedVersion: 2
     m_Curve:
@@ -81,7 +79,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  removalMaxVerticalOffset: 0.75
+  removalDistance: {x: 1, y: 10}
+  removalDuration: {x: 0.33, y: 0.5}
   removalVerticalOffsetCurve:
     serializedVersion: 2
     m_Curve:
@@ -95,7 +94,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.036505867
     - serializedVersion: 3
-      time: 0.5
+      time: 0.38396347
       value: -1
       inSlope: 0
       outSlope: 0
@@ -106,15 +105,16 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 5.001247
-      outSlope: 5.001247
+      inSlope: 4.431988
+      outSlope: 4.431988
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.04432857
+      inWeight: 0.04232801
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  removalMaxVerticalOffset: 0.75
 --- !u!222 &5644618791975947991
 CanvasRenderer:
   m_ObjectHideFlags: 0
